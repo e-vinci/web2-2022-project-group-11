@@ -9,7 +9,7 @@ router.get('/',(req,res)=> {
     const allMots= readAllMots();
     return res.json(allMots);
 
-})
+});
 
 router.get('/random',(req,res)=> {
     const motRandom = readRandomMot();
