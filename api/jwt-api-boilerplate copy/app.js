@@ -13,6 +13,8 @@ const authsRouter = require('./routes/auths');
 const motsRouter= require('./routes/mots');
 const partiesRouter= require('./routes/parties');
 const effetsRouter= require('./routes/effetsSpeciaux');
+const partiesEffetsRouter = require('./routes/partiesEffets');
+
 
 
 const app = express();
@@ -30,6 +32,9 @@ app.use('/auths', authsRouter);
 app.use('/mots', motsRouter);
 app.use('/parties', partiesRouter);
 app.use('/effets', effetsRouter);
+app.use('/partiesEffets', partiesEffetsRouter);
+
+
 
 
 
