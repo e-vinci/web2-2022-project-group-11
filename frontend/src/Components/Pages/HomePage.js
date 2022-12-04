@@ -1,7 +1,7 @@
-import title from "../../img/titre.png";
+import title from "../../img/inc.png";
 import bush from "../../img/bush.png";
 import chevron from "../../img/chevron.png";
-import inco from "../../img/inco.png";
+import inco from "../../img/spy.png";
 
 const HomePage = () => {
   const main = document.querySelector('main');

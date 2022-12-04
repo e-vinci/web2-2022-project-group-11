@@ -31,7 +31,7 @@ body {
     }
 
     35% {
-        transform: scale(1.03);
+        transform: scale(1.01);
     }
 }
 
@@ -304,27 +304,6 @@ nav ul img:hover {
 .navigation-auto div:not(:last-child) {
     margin-right: 40px;
 }
-
-#radio1:checked ~ .navigation-auto .auto-btn1 {
-    background: black;
-}
-
-#radio2:checked ~ .navigation-auto .auto-btn2 {
-    background: black;
-}
-
-#radio3:checked ~ .navigation-auto .auto-btn3 {
-    background: black;
-}
-
-#radio4:checked ~ .navigation-auto .auto-btn4 {
-    background: black;
-}
-
-#radio5:checked ~ .navigation-auto .auto-btn5 {
-    background: black;
-}
-
 
 /* Ranking Page */
 
