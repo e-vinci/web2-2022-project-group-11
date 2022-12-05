@@ -10,7 +10,7 @@ function readAllParties(){
     return parties;
 }
 
-function createOnePartie(nbrJoueurs, nbrIncongnitos, nbrEspions, idMot, idMembre){
+function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre){
     const parties= parse(jsonDbPath,defaultParties);
     const createdPartie= {
         codePartie: getNextId(),
@@ -26,6 +26,7 @@ function createOnePartie(nbrJoueurs, nbrIncongnitos, nbrEspions, idMot, idMembre
 
 
 }
+
 
 function getNextId() {
     const parties = parse(jsonDbPath, defaultParties);

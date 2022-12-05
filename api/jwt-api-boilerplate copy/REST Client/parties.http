@@ -13,7 +13,7 @@ Content-Type: application/json
     "nbrJoueurs":5,
     "nbrIncognitos":0,
     "nbrEspions":1,
-    "idMot": 2,
+   
     "idMembre":1
 
 }

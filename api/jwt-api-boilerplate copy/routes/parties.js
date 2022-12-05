@@ -1,5 +1,6 @@
 const express= require('express');
 const{readAllParties,createOnePartie} = require('../models/parties');
+const {readRandomMot} = require('../models/mot');
 
 const router= express.Router();
 
@@ -15,10 +16,10 @@ router.post('/', (req,res)=> {
 
     const nbrIncognitos= req.body.nbrIncognitos;
     const nbrEspions=  req.body.nbrEspions;
-    const idMot= req.body.idMot ;
+    const idMot= readRandomMot();
     const idMembre=  req.body.idMembre;
    // if( !nbrJoueurs || !nbrIncognitos || !nbrEspions || !idMot || !idMembre  ) return res.sendStatus(400);
-   const createdPartie= createOnePartie(nbrJoueurs, nbrIncognitos, nbrEspions, idMot, idMembre );
+   const createdPartie= createOnePartie(nbrJoueurs, nbrIncognitos, idMot, nbrEspions, idMembre );
     return res.json(createdPartie);
 });
 module.exports=router;

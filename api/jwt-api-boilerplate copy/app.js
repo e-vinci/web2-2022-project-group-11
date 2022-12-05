@@ -14,6 +14,8 @@ const motsRouter= require('./routes/mots');
 const partiesRouter= require('./routes/parties');
 const effetsRouter= require('./routes/effetsSpeciaux');
 const partiesEffetsRouter = require('./routes/partiesEffets');
+const partiesJoueurRouter= require('./routes/partiesJoueurs');
+
 
 
 
@@ -33,8 +35,7 @@ app.use('/mots', motsRouter);
 app.use('/parties', partiesRouter);
 app.use('/effets', effetsRouter);
 app.use('/partiesEffets', partiesEffetsRouter);
-
-
+app.use('/partiesJoueurs', partiesJoueurRouter);
 
 
 
