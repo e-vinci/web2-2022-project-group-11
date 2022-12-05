@@ -3,7 +3,7 @@ import bush from "../../img/bush.png";
 import chevron from "../../img/chevron.png";
 import inco from "../../img/spy.png";
 
-const HomePage = () => {
+const HomePage = async () => {
   const main = document.querySelector('main');
   main.innerHTML = `
   <div class="home">
@@ -19,18 +19,16 @@ const HomePage = () => {
   </div>
   
   `;
+  try {
 
-  fetch('http://localhost:3000/mots')
-    .then((response) => {
+  const response= await fetch('http://localhost:3000/mots')
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-      return response.json();
-    })
-    .then((mots) => {
-      console.log(mots);
-    })
-    .catch((err) => {
-      console.error('HomePage::error: ', err);
-    });
+    const mots= await response.json();
+
+    console.log(mots);
+}catch (err) {
+  console.error('HomePage::error: ', err);
+}
 };
 
 export default HomePage;
