@@ -11,7 +11,7 @@ const HomePage = () => {
       <img class="logo" src="${title}">
     </div>
     <img class="chevron" src="${chevron}">
-    <div class="play-countainer">
+    <div class="play-countainer nav-link" data-uri="/ranking">
       <img class="bush" src="${bush}">
       <img class="inco" src="${inco}">
       <img class="bush2" src="${bush}">
