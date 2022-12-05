@@ -19,6 +19,18 @@ const HomePage = () => {
   </div>
   
   `;
+
+  fetch('http://localhost:3000/mots')
+    .then((response) => {
+      if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+      return response.json();
+    })
+    .then((mots) => {
+      console.log(mots);
+    })
+    .catch((err) => {
+      console.error('HomePage::error: ', err);
+    });
 };
 
 export default HomePage;

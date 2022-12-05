@@ -31,7 +31,7 @@ app.use(cors(corsOptions));
 app.use('/users', usersRouter);
 app.use('/pizzas', pizzaRouter);
 app.use('/auths', authsRouter);
-app.use('/mots', motsRouter);
+app.use('/mots', cors(corsOptions), motsRouter);
 app.use('/parties', partiesRouter);
 app.use('/effets', effetsRouter);
 app.use('/partiesEffets', partiesEffetsRouter);
