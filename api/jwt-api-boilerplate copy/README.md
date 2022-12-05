@@ -1,7 +1,7 @@
 
-# Boilerplate d'une RESTful API basique
+# Boilerplate d'une RESTful API offrant l'authentification et l'autorisation via JWT
 ## Comment l'utiliser ?
-- Si vous ne l'avez pas fait, vous pouvez cloner le repo associé au boilerplate pour initier votre application : `git clone https://github.com/e-vinci/basic-api-boilerplate.git` ou `git clone https://github.com/e-vinci/basic-api-boilerplate.git nom-de-votre-projet` pour créer votre projet nommé `nom-de-votre-projet`.
+- Si vous ne l'avez pas fait, vous pouvez cloner le repo associé au boilerplate pour initier votre application : `git clone https://github.com/e-vinci/jwt-api-boilerplate.git` ou `git clone https://github.com/e-vinci/jwt-api-boilerplate.git nom-de-votre-projet` pour créer votre projet nommé `nom-de-votre-projet`.
 - **package.json** est le fichier de configuration de votre projet. Veuillez le mettre à jour afin de :
     - donnnez un nom à votre projet & une description ;
     - vous identifier comme auteur.
@@ -18,6 +18,13 @@ cd nom-de-votre-projet # (le nom donné au répertoire de votre projet)
 npm i # (equivalent de npm install)
 npm start
 ```
+- Vous avez un exemple d'opérations, qui sont parfois sécurisée, sur des ressources de type "pizzas". N'hésitez pas à supprimer tout ce qui concerne les pizzas où à mettre à jour le code pour l'adapter aux types de ressources que vous souhaitez mettre en oeuvre.
+
+## Test des opérations offerte par l'API
+- Installez l'extension **REST Client** de VS Code.
+- N'oubliez pas de démarrer l'API : `npm run dev` ou utilisez votre debugger.
+- N'hésitez pas à explorer les requêtes pour voir comment l'API réagit => clic sur `Send Request` au sein de `/tests/auths.http` ou `/tests/pizzas.http`.
+- Si vous avez besoin de plus d'information sur comment récupérer des données suite à une requête faite via REST Client, n'hésitez pas à lire la documentation : https://github.com/Huachao/vscode-restclient
 
 ## Utilisation du linter et du formater
 - Pour bénéficier de feedback sur le code lors de son écriture, par rapport au respect du style 
@@ -160,4 +167,41 @@ A chaque fois, il lance le linter, et si tout est OK, alors il lance **node**. E
 il ne lance pas **node** et donc l'application est temporairement crashée.
 
 - En conclusion, voici tous les packages qui ont été installés pour le linter et le formater : `npm i eslint eslint-config-airbnb-base eslint-webpack-plugin prettier-airbnb-config -D`. Deux fichiers de config ont été rajoutés : **.eslintrc.js** et **.prettierrc.js**, et deux extensions ont été installées dans VS Code : **ESLint** et **Prettier**.
+
+## Gestion des CORS
+- La sécurité de l'API va être relâchée en gérant les Cross Origin Resource Sharing  (CORS). On va configurer le serveur de l'API en spécifiant la ou les origines pouvant lire ses ressources via un web browser (pouvant accéder à ses réponses). Cela sera fait via des « HTTP headers » ajoutés aux réponses du serveur.
+- Installation du package `cors` : `npm i cors`
+- Relaxer la sécurité au niveau de toutes les routes en appelant le middleware **cors** (on pourrait le faire au niveau d'un router uniquement , ou d'une seule route):  
+``` js
+const cors = require('cors');
+
+const corsOptions = {
+  origin: ['http://localhost:8080', 'https://e-baron.github.io'],
+};
+
+app.use(cors(corsOptions));
+``` 
+
+## Création de token signé à l'aide d'un secret
+- Dans notre API permettant de lire des pizzas, ou d'en ajouter, il n'est pas normal que n'importe qui puisse ajouter, effacer ou mettre à jour des pizzas. On souhaiterait que seul le compte `admin` puisse réaliser des opérations d'écriture sur des pizzas. On va créer un token sécurisé, un JWT, contenant une signature protégée par un secret, et on ajoutera le username de l'utilisateur authentifié dans le payload du token afin de sauvegarder les données de session côté client. Ainsi, seul `admin`, ayant fourni un token valide, aura accès aux opérations sur les ressources sécurisées.
+- Nous allons créer un JWT via : 
+    - un secret "ilovemypizza!" pour la signature
+    - le username comme donnée de session que l'on mettra dans le payload du token,
+    - une durée de vie du token de 24h (`lifetimeJwt` dans le code).
+- Installation du package `jsonwebtoken` permettant de créer un JWT ou vérifier un JWT : `npm i jsonwebtoken`
+- Afin de structurer le code, toute la logique de gestion des utilisateurs et de leurs token a été mise dans le "Fat Model" `/model/users.js`. Les méthodes `login` et `register` permettent de vérifier les données d'authentification d'un utilisateur, ses "credentials", et de générer un token si tout est OK. 
+- Utilisation de `jsonwebtoken` pour créer le token : voir l'appel de la méthode `jwt.sign()` dans `/model/users.js`.
+
+## Sécurisation des opérations d'écriture sur des pizzas
+- Afin de sécuriser les opérations d'écriture sur des ressources de types "pizzas" (création, suppression et modification de ressources) par `admin` seulement, dans `/routes/pizzas.js`, les fonctions middleware `authorize` et `isAdmin` de `/utils/authorize.js` sont utilisées ; `authorize` appelle la méthode `jwt.verify()` pour vérifier la signature et parser les infos qui sont dans le payload (`token.username`) du token.
+
+## Hachage des passwords
+- Installation du package `bcrypt` : `npm i bcrypt`
+- Hachage du password lors de l'enregistrement d'un utilisateur via l'appel de la méthode `hash()` de `bcrypt` au sein de `/model/users.js `. Notons que `hash` renvoie une promesse.
+- Comparaison d'un password reçu en clair, lors du login, avec le password haché : utilisation de la méthode compare de `bcrypt` au sein de `/model/users.js `. Là aussi il faut gérer une promesse.
+
+## Echapper les caractères dangereux
+- Afin de se protéger contre les attaques XSS, les caractères dangereux sont échappés lors des opérations d'écritures.
+- Installation du package `escape-html` : `npm i escape-html`
+- Utilisation de la fonction `escape` pour échapper les caractères dangereux dans `/model/pizzas.js`
 

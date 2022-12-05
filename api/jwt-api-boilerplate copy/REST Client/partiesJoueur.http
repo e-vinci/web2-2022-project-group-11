@@ -1,0 +1,15 @@
+
+@baseUrl= http://localhost:3000
+
+###
+GET {{baseUrl}}/partiesJoueurs/
+
+###
+POST {{baseUrl}}/partiesEffets/
+Content-Type: application/json
+
+{
+    "code_partie": 1,
+    "id_effet":1,
+    "id_joueur":1
+}

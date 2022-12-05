@@ -1,0 +1,18 @@
+@baseUrl = http://localhost:3000
+
+
+
+###
+GET {{baseUrl}}/mots/
+
+###
+GET {{baseUrl}}/mots/random
+
+###
+POST {{baseUrl}}/mots/
+Content-Type: application/json
+
+{
+    "mot": "libellule",
+    "semblable": "insecte"
+}

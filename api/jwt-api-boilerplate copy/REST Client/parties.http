@@ -1,0 +1,19 @@
+
+@baseUrl= http://localhost:3000
+
+###
+GET {{baseUrl}}/parties/
+
+
+###
+POST {{baseUrl}}/parties/
+Content-Type: application/json
+
+{
+    "nbrJoueurs":5,
+    "nbrIncognitos":0,
+    "nbrEspions":1,
+   
+    "idMembre":1
+
+}
