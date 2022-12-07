@@ -21,11 +21,11 @@ const HomePage = async () => {
   `;
   try {
 
-  const response= await fetch('http://localhost:3000/mots')
+  const response= await fetch('http://localhost:3000/parties')
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-    const mots= await response.json();
+    const parties= await response.json();
 
-    console.log(mots);
+    console.log(parties);
 }catch (err) {
   console.error('HomePage::error: ', err);
 }
