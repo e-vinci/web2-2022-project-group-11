@@ -5,11 +5,11 @@
 GET {{baseUrl}}/partiesJoueurs/
 
 ###
-POST {{baseUrl}}/partiesEffets/
+POST {{baseUrl}}/partiesJoueurs/
 Content-Type: application/json
 
 {
-    "code_partie": 1,
-    "id_effet":1,
-    "id_joueur":1
+    "pseudo":1,
+    "code_partie":1,
+    "est_invite":true
 }
