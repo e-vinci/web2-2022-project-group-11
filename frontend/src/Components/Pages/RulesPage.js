@@ -7,6 +7,8 @@ import rules6 from "../../img/6.png";
 import rules7 from "../../img/7.png";
 import rules8 from "../../img/8.png";
 
+let counter = 2;
+
 const RulesPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
@@ -112,14 +114,14 @@ const RulesPage = () => {
             
         </div>
         <div class="navigation-auto">
-            <div class="auto-btn1"></div>
-            <div class="auto-btn2"></div>
-            <div class="auto-btn3"></div>
-            <div class="auto-btn4"></div>
-            <div class="auto-btn5"></div>
-            <div class="auto-btn6"></div>
-            <div class="auto-btn7"></div>
-            <div class="auto-btn8"></div>
+            <div class="auto-btn1 delete"></div>
+            <div class="auto-btn2 delete"></div>
+            <div class="auto-btn3 delete"></div>
+            <div class="auto-btn4 delete"></div>
+            <div class="auto-btn5 delete"></div>
+            <div class="auto-btn6 delete"></div>
+            <div class="auto-btn7 delete"></div>
+            <div class="auto-btn8 delete"></div>
         </div>
         <div class="navigation-manual">
             <label for="radio1" class="manual-btn"></label>
@@ -135,18 +137,40 @@ const RulesPage = () => {
     </div>
     
     `;
+
+    document.querySelector(`.auto-btn1`).style.backgroundColor = 'white';
+
+    setInterval(() => {
+        document.getElementById(`radio${  counter}`).checked = true;
+        const deleteDiv = document.querySelectorAll('.delete'); 
+        // eslint-disable-next-line no-param-reassign
+        deleteDiv.forEach((div) => {div.style.backgroundColor = 'transparent'});
+        document.querySelector(`.auto-btn${ counter}`).style.backgroundColor = 'white';
+       counter += 1;
+       if(counter > 8) {
+           counter = 1;
+       }
+     }, 7000);
+
+     let count = 0;
+    
+  const radioBtn = document.querySelectorAll('.radio-btn');
+    radioBtn.addEventListener('click', () => {
+        count = 0;
+        radioBtn.forEach((element) => {
+            if(element.checked === true) {
+                counter = count;
+            };
+            count += 1;
+        });
+    });
+    
   };
 
   
 
- // const counter = 1;
+ 
 
- // setInterval(function() {
- //   document.getElementById('radio' + counter).checked = true;
- //   counter++;
- //   if(counter > 8) {
- //       counter = 1;
- //   }
- // }, 5000);
+ 
   
   export default RulesPage;

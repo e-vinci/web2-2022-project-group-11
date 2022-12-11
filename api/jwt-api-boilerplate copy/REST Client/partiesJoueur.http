@@ -1,0 +1,15 @@
+
+@baseUrl= http://localhost:3000
+
+###
+GET {{baseUrl}}/partiesJoueurs/
+
+###
+POST {{baseUrl}}/partiesJoueurs/
+Content-Type: application/json
+
+{
+    "pseudo":1,
+    "code_partie":1,
+    "est_invite":true
+}

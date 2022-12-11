@@ -8,9 +8,10 @@ const defaultParties=[];
 function readAllParties(){
     const parties= parse(jsonDbPath,defaultParties);
     return parties;
-}
+};
 
-function createOnePartie(nbrJoueurs, nbrIncongnitos, nbrEspions, idMot, idMembre){
+
+function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre){
     const parties= parse(jsonDbPath,defaultParties);
     const createdPartie= {
         codePartie: getNextId(),
@@ -19,13 +20,39 @@ function createOnePartie(nbrJoueurs, nbrIncongnitos, nbrEspions, idMot, idMembre
         nbrEspions: nbrEspions,
         idMot: idMot,
         idMembre:idMembre,
+        idEspions: getRandomIds(nbrEspions,nbrJoueurs),
     };
+
     parties.push(createdPartie);
     serialize(jsonDbPath,parties);
     return createdPartie;
 
 
+};
+
+
+function getRandomIds(nbrEspions, nbrJoueurs){
+    let idsEspions=[];
+
+   for(let i =0;i<nbrEspions;i++){
+   let i = (Math.floor(Math.random() * nbrJoueurs) + 1);
+   idsEspions.push(i);
+
+   
+   } ;
+   return idsEspions;
+
+
+
 }
+
+
+function readPartieByCode(codePartie){
+    const parties= parse(jsonDbPath, defaultParties);
+    const indexFound= parties.findIndex((partie)=> partie.codePartie== codePartie);
+    if(indexFound<0) return undefined;
+    return parties[indexFound];
+};
 
 function getNextId() {
     const parties = parse(jsonDbPath, defaultParties);
@@ -36,4 +63,4 @@ function getNextId() {
     return nextId;
   }
 
-module.exports= {readAllParties, createOnePartie};
+module.exports= {readAllParties, createOnePartie,readPartieByCode, getRandomIds};

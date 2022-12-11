@@ -4,6 +4,8 @@
 ###
 GET {{baseUrl}}/parties/
 
+###
+GET {{baseUrl}}/parties/1
 
 ###
 POST {{baseUrl}}/parties/
@@ -12,8 +14,7 @@ Content-Type: application/json
 {
     "nbrJoueurs":5,
     "nbrIncognitos":0,
-    "nbrEspions":1,
-    "idMot": 2,
+    "nbrEspions":2,
     "idMembre":1
 
 }
