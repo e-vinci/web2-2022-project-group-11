@@ -21,7 +21,7 @@ const HomePage = async () => {
   `;
   try {
 
-  const response= await fetch('http://localhost:3000/parties')
+  const response= await fetch('/api/parties')
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
     const parties= await response.json();
 
@@ -30,5 +30,7 @@ const HomePage = async () => {
   console.error('HomePage::error: ', err);
 }
 };
+
+
 
 export default HomePage;
