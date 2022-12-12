@@ -1,72 +1,39 @@
+import Navigate from "../Router/Navigate";
+import RegisterPage from "./RegisterPage";
 const LoginPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
     <section>
-
-        <h1>connexion</h1>
-    
-        <form method="post" action="" id="login">
-            <div>
-                <label>Email : </label>
-                <input type="email" name="email" id= "email">
-            </div>
-            <div>
+        <div class="wrapper">
+        <h1>Connexion</h1>
+            <div class="input-box"> 
                 <label>Username </label>
-                <input type="username" name="login" value="" id= "username">
+                <input type="username" name="username" id= "username">
             </div>
             
-            <div>
-                <label>Password : </label>
-                <input  id="password"  name="password" type="password">
+            <div class="input-box"> 
+                <label>Password </label>
+                <input  type="password" name="password" id="password">
             </div>
             <div>
-            <p id="login_btn"> Se connecter </p>
-            <p id="register_btn"> S'inscrire </p>
-
+            <button id="login_btn" type="submit">Se connecter</button>
             </div>
         </form>
-        
-        <p>Pas de compte ? Inscrivez vous <a class="nav-link" data-uri="/rules">içi</a><p>
+        <p>Pas de compte ? <button id="registerLinkBtn" type="submit">S'inscrire</button>
+
+        </div>
 
     </section>
     `;
 
-    const registerBtn = document.querySelector("#register_btn");
-    registerBtn.addEventListener("click", register);
+    const registerLink = document.getElementById('registerLinkBtn');
+    registerLink.addEventListener('click', () => {
+        Navigate('/register');
+        console.log('hello');
+    })
+
     const loginBtn = document.querySelector("#login_btn");
     loginBtn.addEventListener("click", login);
-   
-   
-   async function register(e){
-        e.preventDefault();
-
-        const email= document.querySelector("#email").value;
-        const username= document.querySelector("#username").value;
-        const password= document.querySelector("#password").value;
-
-
-        const options = {
-            method: 'POST',
-            body: JSON.stringify({
-                email,
-                username,
-                password,
-
-            }),
-            headers: {
-                'Content-Type' : 'application/json',
-
-            },
-
-        };
-
-        const response= await fetch('/api/auths/register',options);
-        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-        const newUser = await response.json(); // json() returns a promise => we wait for the data
-
-        console.log('New user added : ', newUser);
-    };
 
 
     async function login(e){
