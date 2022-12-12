@@ -20,8 +20,8 @@ const LoginPage = () => {
                 <input  id="password"  name="password" type="password">
             </div>
             <div>
-                <input type="submit" value="Me connecter" id="login_btn">
-                <p id="register_btn"> S'inscrire </p>
+            <p id="login_btn"> Se connecter </p>
+            <p id="register_btn"> S'inscrire </p>
 
             </div>
         </form>
@@ -33,7 +33,8 @@ const LoginPage = () => {
 
     const registerBtn = document.querySelector("#register_btn");
     registerBtn.addEventListener("click", register);
-   
+    const loginBtn = document.querySelector("#login_btn");
+    loginBtn.addEventListener("click", login);
    
    
    async function register(e){
@@ -67,6 +68,36 @@ const LoginPage = () => {
         console.log('New user added : ', newUser);
     };
 
+
+    async function login(e){
+        e.preventDefault();
+
+        const username= document.querySelector("#username").value;
+        const password= document.querySelector("#password").value;
+
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({
+               
+                username,
+                password,
+
+            }),
+            headers: {
+                'Content-Type' : 'application/json',
+
+            },
+
+        };
+
+        const response= await fetch('/api/auths/login',options);
+        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+        const loggedUser = await response.json(); // json() returns a promise => we wait for the data
+
+        console.log('New logged user : ', loggedUser);
+    };
 
 
 
