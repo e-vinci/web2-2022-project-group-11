@@ -13,6 +13,7 @@ function readAllParties(){
 
 function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre){
     const parties= parse(jsonDbPath,defaultParties);
+    const idIncognitos= getRandomIds(nbrIncongnitos,nbrJoueurs);
     const createdPartie= {
         codePartie: getNextId(),
         nbrJoueurs: nbrJoueurs,
@@ -20,7 +21,8 @@ function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre)
         nbrEspions: nbrEspions,
         idMot: idMot,
         idMembre:idMembre,
-        idEspions: getRandomIds(nbrEspions,nbrJoueurs),
+        idIncognitos: idIncognitos,
+        idEspions: getRandomIdsEspions(nbrEspions,nbrJoueurs,idIncognitos),
     };
 
     parties.push(createdPartie);
@@ -31,20 +33,30 @@ function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre)
 };
 
 
-function getRandomIds(nbrEspions, nbrJoueurs){
+function getRandomIds(nbrIds, nbrJoueurs){
     let idsEspions=[];
+    while(idsEspions.length!= nbrJoueurs){
+        let i = (Math.floor(Math.random() * nbrJoueurs) + 1);
+       if(!idsEspions.includes(i)) idsEspions.push(i);
 
-   for(let i =0;i<nbrEspions;i++){
-   let i = (Math.floor(Math.random() * nbrJoueurs) + 1);
-   idsEspions.push(i);
-
-   
-   } ;
+    };
    return idsEspions;
 
 
 
-}
+};
+function getRandomIdsEspions(nbrIdsEspions, nbrJoueurs, idsIncognitos){
+    let idsEspions=[];
+    while(idsEspions.length!=nbrIdsEspions){
+           let i = (Math.floor(Math.random() * nbrJoueurs) + 1);
+           //pourquoi ici parfois on a quand meme les  2 meme ids ? 
+           if(!idsIncognitos.includes(i)) idsEspions.push(i);
+    };
+   return idsEspions;
+
+
+
+};
 
 
 function readPartieByCode(codePartie){

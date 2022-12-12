@@ -17,11 +17,13 @@ function readAllPartiesJoueurs() {
 function createOnePartieJoueur(pseudo,code_partie,est_invite){
   const partiesJoueurs= parse(jsonDbPath, defaultPartiesJoueurs);
   const espionsIds= getEspionsId(code_partie);
-  const code= getNextId();
+  const incognitosIds= getIncognitosId(code_partie);
+  const nbrJoueurs= getNbrJoueurs(code_partie);
+  const code= getNextId(nbrJoueurs);
   const createdPartieJoueur={
     code: code,
     pseudo: escape(pseudo),
-    role: getRole(code,espionsIds),
+    role: getRole(code,espionsIds, incognitosIds),
     code_partie:code_partie,
     est_invite: est_invite,
 
@@ -37,12 +39,27 @@ function getEspionsId(codePartie){
 
 };
 
-function getRole(code, espionsIds){
+function getNbrJoueurs(codePartie){
+  const partie = readPartieByCode(codePartie);
+  return partie.nbrJoueurs;
+
+};
+function getIncognitosId(codePartie){
+  const partie= readPartieByCode(codePartie);
+  return partie.idIncognitos;
+
+}
+
+function getRole(code, espionsIds, incognitosIds){
   let role;
   if(espionsIds.includes(code)) role= 'E';
+  else if(incognitosIds.includes(code)) {
+    role='I';
+  } 
   else {
     role='J';
   }
+   
 
   return role;
 
@@ -50,12 +67,18 @@ function getRole(code, espionsIds){
 
 
 
-function getNextId() {
+function getNextId(nbrJoueurs) {
+
   const partiesJoueurs = parse(jsonDbPath, defaultPartiesJoueurs);
   const lastItemIndex = partiesJoueurs?.length !== 0 ? partiesJoueurs.length - 1 : undefined;
   if (lastItemIndex === undefined) return 1;
   const lastId = partiesJoueurs[lastItemIndex]?.code;
   const nextId = lastId + 1;
+  if(lastId==nbrJoueurs){
+    nbrJoueurs=0;
+    return nbrJoueurs;
+  }
+
   return nextId;
 };
 
