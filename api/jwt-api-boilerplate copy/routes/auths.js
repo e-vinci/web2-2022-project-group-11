@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
   const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
   const password = req?.body?.password?.length !== 0 ? req.body.password : undefined;
-
+  const email= req.body.email;
   if (!username || !password ||!email) return res.sendStatus(400); // 400 Bad Request
 
   const authenticatedUser = await register(username, password,email);

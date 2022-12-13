@@ -107,6 +107,10 @@ function getUsersById(id){
   const foundUser= users[foundIndex];
   return foundUser;
 
+};
+function getUsers(){
+  const users= parse(jsonDbPath, defaultUsers);
+  return users;
 }
 
 module.exports = {
@@ -114,4 +118,6 @@ module.exports = {
   register,
   readOneUserFromUsername,
   getUsersById,
+  createOneUser,
+  getUsers
 };

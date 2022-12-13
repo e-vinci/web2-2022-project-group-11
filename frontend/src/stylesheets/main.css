@@ -365,8 +365,7 @@ nav ul img:hover {
     align-items: center;
     border-radius: 100px;
     box-shadow: rgba(100, 100, 111, 0.056) 0px 7px 29px 0px;
-    cursor: pointer;
-    
+    cursor: pointer; 
 }
 
 .number-but p {
