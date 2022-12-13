@@ -335,12 +335,16 @@ const LoginPage = () => {
     }
 
     function effacerSigne(monSigne) {
+        // eslint-disable-next-line no-param-reassign
         monSigne.style.opacity = 0;
+        // eslint-disable-next-line no-param-reassign
         monSigne.style.cursor = "default";
     }
 
     function afficherSigne(monSigne) {
+        // eslint-disable-next-line no-param-reassign
         monSigne.style.opacity = 1;
+        // eslint-disable-next-line no-param-reassign
         monSigne.style.cursor = "pointer";
     }
     
