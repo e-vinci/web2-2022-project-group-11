@@ -21,7 +21,7 @@ const Navbar = () => {
       <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
       <img class="nav-link" data-uri="/intro" src="${trophee}" alt="trophee icon">
     </ul>
-    <img id="log" class="nav-link" data-uri="/login" src="${login}" alt="login icon">
+    <img id="log" class="nav-link" data-uri="/party" src="${login}" alt="login icon">
   </nav>
   `;
   navbarWrapper.innerHTML = navbar;
