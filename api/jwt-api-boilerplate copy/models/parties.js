@@ -13,7 +13,7 @@ function readAllParties(){
 
 function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre){
     const parties= parse(jsonDbPath,defaultParties);
-    const idIncognitos= getRandomIds(nbrIncongnitos,nbrJoueurs);
+    const idIncognitos=getRandomIds(nbrIncongnitos,nbrJoueurs);
     const createdPartie= {
         codePartie: getNextId(),
         nbrJoueurs: nbrJoueurs,
@@ -35,7 +35,7 @@ function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre)
 
 function getRandomIds(nbrIds, nbrJoueurs){
     let idsEspions=[];
-    while(idsEspions.length!= nbrJoueurs){
+    while(idsEspions.length!= nbrIds){
         let i = (Math.floor(Math.random() * nbrJoueurs) + 1);
        if(!idsEspions.includes(i)) idsEspions.push(i);
 

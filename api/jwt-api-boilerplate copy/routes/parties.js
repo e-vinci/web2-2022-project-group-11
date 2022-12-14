@@ -20,7 +20,7 @@ router.post('/', (req,res)=> {
 
     const nbrIncognitos= req.body.nbrIncognitos;
     const nbrEspions=  req.body.nbrEspions;
-    const idMot= readRandomMot().id;
+    const idMot= 4; //  readRandomMot().id;
     const idMembre=  req.body.idMembre;
     
    // if( !nbrJoueurs || !nbrIncognitos || !nbrEspions || !idMot || !idMembre  ) return res.sendStatus(400);
