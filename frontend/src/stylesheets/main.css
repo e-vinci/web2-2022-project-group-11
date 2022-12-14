@@ -332,6 +332,7 @@ nav ul img:hover {
 .number-player {
     text-align: center;
     cursor: default;
+    user-select: none;
     width: 180px;
     background: linear-gradient(#74f2c2f5, #5bfeb5f5);
     clip-path: polygon(20% 0%, 0% 20%, 10% 50%, 0% 80%, 20% 100%, 56% 100%, 80% 100%, 100% 80%, 90% 50%, 100% 20%, 80% 0%, 41% 0);
@@ -353,6 +354,7 @@ nav ul img:hover {
 
 .number-but {
     background: #74f2c2;
+    user-select: none;
     color: #fff;
     font-weight: bold;
     font-size: 40px;
@@ -363,8 +365,7 @@ nav ul img:hover {
     align-items: center;
     border-radius: 100px;
     box-shadow: rgba(100, 100, 111, 0.056) 0px 7px 29px 0px;
-    cursor: pointer;
-    
+    cursor: pointer; 
 }
 
 .number-but p {
@@ -387,6 +388,7 @@ nav ul img:hover {
 
 .player-buble {
     margin-top: 20px;
+    user-select: none;
     margin-bottom: 20px;
     font-size: 23px;
     font-weight: bold;
@@ -408,6 +410,7 @@ nav ul img:hover {
 .inco-but {
     background: #fff;
     color: rgb(0, 255, 145);
+    user-select: none;
     font-size: 35px;
     font-weight: bold;
     box-shadow: rgba(100, 100, 111, 0.056) 0px 7px 29px 0px;

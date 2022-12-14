@@ -1,8 +1,13 @@
 const PartyPage = () => {
     const main = document.querySelector('main');
-    main.innerHTML = 
-        <p>Begin</p>
-    ;
+    main.innerHTML = `
+        <div class="info-container">
+            <div class="">
+            </div>
+            <div class="">
+            </div>
+        </div>
+    `;
 };
 
 export default PartyPage;
