@@ -4,6 +4,7 @@ import rules from '../../img/rules.png';
 import inco from '../../img/spy.png';
 import trophee from '../../img/trophe.png';
 import login from '../../img/login2.png';
+import Navigate from '../Router/Navigate';
 
 /**
  * Render the Navbar which is styled by using Bootstrap
@@ -21,10 +22,12 @@ const Navbar = () => {
       <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
       <img class="nav-link" data-uri="/intro" src="${trophee}" alt="trophee icon">
     </ul>
-    <img id="log" class="nav-link" data-uri="/party" src="${login}" alt="login icon">
+    <img id="log" class="nav-link" data-uri="/login" src="${login}" alt="login icon">
   </nav>
   `;
+  
   navbarWrapper.innerHTML = navbar;
+ 
 };
 
 export default Navbar;

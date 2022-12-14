@@ -14,16 +14,20 @@ const PartyPage = () => {
             <p> ${nombreJoueurs}</p>
             <p> ${nombreIncognitos}</p>
             <p> ${nombreMrXX}</p>
-
+            <p id="bouton" > lancer la game </p> 
             </div>
             <div class="">
             </div>
         </div>
     `;
-    createPartie();
+    const bouton= document.querySelector('#bouton');
+    bouton.addEventListener("click",createPartie); 
+
+
 
     async function createPartie(e){
-        e.prevenDefault();
+        e.preventDefault();
+        console.log("hello");
         const idMembre=1;
 
         const options = {
@@ -48,7 +52,7 @@ const PartyPage = () => {
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
 
         console.log('New partie added : ', newPartie);
-    }
+    };
 };
 
 export default PartyPage;

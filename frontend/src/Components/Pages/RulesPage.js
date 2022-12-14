@@ -138,7 +138,7 @@ const RulesPage = () => {
     
     `;
 
-    document.querySelector(`.auto-btn1`).style.backgroundColor = 'white';
+   /* document.querySelector(`.auto-btn1`).style.backgroundColor = 'white';
 
     setInterval(() => {
         document.getElementById(`radio${  counter}`).checked = true;
@@ -155,7 +155,7 @@ const RulesPage = () => {
      let count = 0;
     
   const radioBtn = document.querySelectorAll('.radio-btn');
-    radioBtn.addEventListener('click', () => {
+   radioBtn.addEventListener('click', () => {
         count = 0;
         radioBtn.forEach((element) => {
             if(element.checked === true) {
@@ -164,7 +164,7 @@ const RulesPage = () => {
             count += 1;
         });
     });
-    
+*/    
   };
 
   

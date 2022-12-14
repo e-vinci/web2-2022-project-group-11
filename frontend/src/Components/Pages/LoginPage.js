@@ -38,6 +38,8 @@ const LoginPage = () => {
    
    
    async function register(e){
+    console.log("hok");
+    
         e.preventDefault();
 
         const email= document.querySelector("#email").value;
