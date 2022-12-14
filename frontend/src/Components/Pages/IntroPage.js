@@ -1,3 +1,5 @@
+import Navigate from "../Router/Navigate";
+
 const LoginPage = () => {
     
     const main = document.querySelector('main');
@@ -32,17 +34,29 @@ const LoginPage = () => {
             <button class="start-but">Commencer</button>
         </div>
     `;
+    const startBtn = document.querySelector(".start-but");
+    startBtn.addEventListener("click", toPage );
+    function toPage(){
+        localStorage.setItem("nbrJoueurs", countJoueurs);
+        localStorage.setItem("nbrIncognitos", countIncognitos);
+        localStorage.setItem("nbrX", countMrxx);
+        Navigate('/party');
+    };
 
     const nbrJoueurs = document.querySelector("#nbr_joueurs");
     const nbrCivils = document.querySelector("#nbr_civils");
     const nbrIncognitos = document.querySelector("#nbr_incognitos");
     const nbrMrxx = document.querySelector("#nbr_mrxx");
+    
+
 
     let countJoueurs = 4;
     let countCivils = countJoueurs - 1;
     let countIncognitos = 1;
     let countMrxx = 0;
     let countIM = 1;
+
+
 
     nbrJoueurs.innerHTML = countJoueurs;
     nbrCivils.innerHTML = countCivils;
@@ -63,7 +77,8 @@ const LoginPage = () => {
     effacerSigne(incognitoPlus);
 
     joueursPlus.addEventListener('click', () => {
-        if(countJoueurs === 20) {
+             
+          if(countJoueurs === 20) {
             // empty
         } else {
             afficherSigne(joueursMoins);
@@ -197,6 +212,9 @@ const LoginPage = () => {
             afficherSigne(mrxxPlus);
             countIncognitos += 1;
             countMrxx -= 1;
+          
+            
+
         } else if (countJoueurs === 4) {
             if(countMrxx === 1 && countIncognitos === 0) {
                 countIncognitos += 1;
@@ -346,8 +364,14 @@ const LoginPage = () => {
         monSigne.style.opacity = 1;
         // eslint-disable-next-line no-param-reassign
         monSigne.style.cursor = "pointer";
-    }
+    };
+
+    
+
+    
+
+
     
 };
 
-export default LoginPage;
+export  default LoginPage;

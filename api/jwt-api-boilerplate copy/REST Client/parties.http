@@ -12,8 +12,8 @@ POST {{baseUrl}}/parties/
 Content-Type: application/json
 
 {
-    "nbrJoueurs":4,
-    "nbrIncognitos":0,
+    "nbrJoueurs":9,
+    "nbrIncognitos":1,
     "nbrEspions":3,
     "idMembre":1
 
