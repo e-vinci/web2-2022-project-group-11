@@ -5,6 +5,7 @@ import RulesPage from '../Pages/RulesPage';
 import RankingPage from '../Pages/RankingPage';
 import LoginPage from '../Pages/LoginPage';
 import IntroPage from '../Pages/IntroPage';
+import PartyPage from '../Pages/PartyPage';
 
 const routes = {
   '/': HomePage,
@@ -14,6 +15,7 @@ const routes = {
   '/login': LoginPage,
   '/intro': IntroPage,
   '/new': NewPage,
+  '/party': PartyPage,
 };
 
 export default routes;

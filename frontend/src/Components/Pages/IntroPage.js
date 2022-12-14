@@ -1,3 +1,5 @@
+import Navigate from "../Router/Navigate";
+
 const LoginPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
@@ -31,6 +33,15 @@ const LoginPage = () => {
             <button class="start-but">Commencer</button>
         </div>
     `;
+    
+
+    const startBtn = document.querySelector(".start-but");
+startBtn.addEventListener("click", toPage );
+function toPage(){
+    Navigate('/party');
+}
 };
+
+
 
 export default LoginPage;
