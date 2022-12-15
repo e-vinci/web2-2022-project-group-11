@@ -2,18 +2,18 @@
 
 const PartyPage = () => {
     const main = document.querySelector('main');
-    const nombreJoueurs= localStorage.getItem("nbrJoueurs");
-    const nombreMrXX= localStorage.getItem("nbrIncognitos");
-    const nombreIncognitos= localStorage.getItem("nbrX");
+    const nbrJoueurs= localStorage.getItem("nbrJoueurs");
+    const nbrEspions= localStorage.getItem("nbrIncognitos");
+    const nbrIncognitos= localStorage.getItem("nbrX");
 
     
 
     main.innerHTML = `
         <div class="info-container">
             <div class="">
-            <p> ${nombreJoueurs}</p>
-            <p> ${nombreIncognitos}</p>
-            <p> ${nombreMrXX}</p>
+            <p> ${nbrJoueurs}</p>
+            <p> ${nbrIncognitos}</p>
+            <p> ${nbrEspions}</p>
             <p id="bouton" > lancer la game </p> 
             </div>
             <div class="">
@@ -33,9 +33,9 @@ const PartyPage = () => {
         const options = {
             method: 'POST',
             body: JSON.stringify({
-                nombreJoueurs,
-                nombreIncognitos,
-                nombreMrXX,
+                nbrJoueurs,
+                nbrIncognitos,
+                nbrEspions,
                 idMembre,
 
             }),
@@ -45,8 +45,10 @@ const PartyPage = () => {
             },
 
         };
+        console.log(options)
 
         const response= await fetch('/api/parties',options);
+        console.log(response);
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
