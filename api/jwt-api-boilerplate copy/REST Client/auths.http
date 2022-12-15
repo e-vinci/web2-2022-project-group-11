@@ -10,6 +10,7 @@ Content-Type: application/json
 }
 
 ### Login the default admin
+# @name manager
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
@@ -25,8 +26,8 @@ Content-Type: application/json
 
 {
     "email": "mymail",
-    "username":"1",
-    "password":"manager"
+    "username":"admin",
+    "password":"admin"
 }
 
 ### Login the manager user

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { readOneUserFromUsername } = require('../models/users');
 
-const jwtSecret = 'ilovemypizza!';
+const jwtSecret = 'ilovemyGame!';
 
 const authorize = (req, res, next) => {
   const token = req.get('authorization');
@@ -26,9 +26,9 @@ const authorize = (req, res, next) => {
 
 const isAdmin = (req, res, next) => {
   const { username } = req.user;
-
   if (username !== 'admin') return res.sendStatus(403);
   return next();
 };
 
-module.exports = { authorize, isAdmin };
+
+module.exports = { authorize , isAdmin};
