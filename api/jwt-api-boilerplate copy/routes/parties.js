@@ -15,16 +15,16 @@ router.get('/:code',(req,res)=> {
 })
 
 router.post('/', (req,res)=> {
-    const nbrJoueurs=  req.body.nbrJoueurs;
+    const nombreJoueurs=  req.body.nombreJoueurs;
     //todo changer ici 
 
-    const nbrIncognitos= req.body.nbrIncognitos;
-    const nbrEspions=  req.body.nbrEspions;
+    const nombreIncognitos= req.body.nombreIncognitos;
+    const nombreMrXX=  req.body.nombreMrXX;
     const idMot= 4; //  readRandomMot().id;
     const idMembre=  req.body.idMembre;
     
    // if( !nbrJoueurs || !nbrIncognitos || !nbrEspions || !idMot || !idMembre  ) return res.sendStatus(400);
-   const createdPartie= createOnePartie(nbrJoueurs, nbrIncognitos, idMot, nbrEspions, idMembre );
+   const createdPartie= createOnePartie(nombreJoueurs, nombreIncognitos, idMot, nombreMrXX, idMembre );
     return res.json(createdPartie);
 });
 module.exports=router;

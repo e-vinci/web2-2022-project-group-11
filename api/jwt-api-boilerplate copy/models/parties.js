@@ -16,7 +16,7 @@ function createOnePartie(nbrJoueurs, nbrIncongnitos, idMot,nbrEspions, idMembre)
     const idIncognitos=getRandomIds(nbrIncongnitos,nbrJoueurs);
     const createdPartie= {
         codePartie: getNextId(),
-        nbrJoueurs: nbrJoueurs,
+        nombreJoueurs: nbrJoueurs,
         nbrIncongnitos: nbrIncongnitos,
         nbrEspions: nbrEspions,
         idMot: idMot,

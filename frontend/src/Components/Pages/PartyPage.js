@@ -2,18 +2,18 @@
 
 const PartyPage = () => {
     const main = document.querySelector('main');
-    const nbrJoueurs= localStorage.getItem("nbrJoueurs");
-    const nbrEspions= localStorage.getItem("nbrIncognitos");
-    const nbrIncognitos= localStorage.getItem("nbrX");
+    const nombreJoueurs= localStorage.getItem("nbrJoueurs");
+    const nombreMrXX= localStorage.getItem("nbrIncognitos");
+    const nombreIncognitos= localStorage.getItem("nbrX");
 
     
 
     main.innerHTML = `
         <div class="info-container">
             <div class="">
-            <p> ${nbrJoueurs}</p>
-            <p> ${nbrIncognitos}</p>
-            <p> ${nbrEspions}</p>
+            <p> ${nombreJoueurs}</p>
+            <p> ${nombreIncognitos}</p>
+            <p> ${nombreMrXX}</p>
             <p id="bouton" > lancer la game </p> 
             </div>
             <div class="">
@@ -33,9 +33,9 @@ const PartyPage = () => {
         const options = {
             method: 'POST',
             body: JSON.stringify({
-                nbrJoueurs,
-                nbrIncognitos,
-                nbrEspions,
+                nombreJoueurs,
+                nombreIncognitos,
+                nombreMrXX,
                 idMembre,
 
             }),
