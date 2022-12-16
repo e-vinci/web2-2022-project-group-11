@@ -16,18 +16,21 @@ const defaultUsers = [
     id: 1,
     username: 'admin',
     email:'myemail',
+    isAdmin: false,
     password: bcrypt.hashSync('admin', saltRounds),
   },
   {id:2,
-  username: 'moi',
-  email: 'monEmail',
-  password: bcrypt.hashSync('mdp',saltRounds),
+  username: '1',
+  email: 'm1onEmail',
+  isAdmin: true,
+  password: bcrypt.hashSync('1',saltRounds),
 },
 ];
 
 async function login(username, password) {
   const userFound = readOneUserFromUsername(username);
   if (!userFound) return undefined;
+  const isAdmin= userFound.isAdmin
 
   const passwordMatch = await bcrypt.compare(password, userFound.password);
   if (!passwordMatch) return undefined;
@@ -41,6 +44,7 @@ async function login(username, password) {
   const authenticatedUser = {
     username,
     token,
+    isAdmin,
   };
 
   return authenticatedUser;
@@ -49,7 +53,7 @@ async function login(username, password) {
 async function register(username, password,email) {
   const userFound = readOneUserFromUsername(username);
   if (userFound) return undefined;
-
+  const isAdmin= false;
   await createOneUser(username, password,email);
 
   const token = jwt.sign(
@@ -61,6 +65,7 @@ async function register(username, password,email) {
   const authenticatedUser = {
     username,
     token,
+    isAdmin
   };
 
   return authenticatedUser;
@@ -76,13 +81,14 @@ function readOneUserFromUsername(username) {
 
 async function createOneUser(username, password,email) {
   const users = parse(jsonDbPath, defaultUsers);
-
+  const isAdmin=false;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
   const createdUser = {
     id: getNextId(),
     username,
     email,
+    isAdmin,
     password: hashedPassword,
   };
 

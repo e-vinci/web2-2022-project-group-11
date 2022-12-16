@@ -17,7 +17,8 @@ router.post('/',(req,res)=> {
   const username= req?.body?.username?.length !==0 ? req.body.username: undefined;
   const email = req.body.email;
   const password= req.body.password;
-  const createdUser = createOneUser(username, password, email);
+  const isAdmin= false;
+  const createdUser = createOneUser(username, password, email,isAdmin);
   return res.json(createdUser);
 
 } );
