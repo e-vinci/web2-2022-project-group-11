@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH {{baseUrl}}/motsTemporaires/2
+PATCH {{baseUrl}}/motsTemporaires/4
 Content-Type: application/json
 
 {

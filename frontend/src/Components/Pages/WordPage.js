@@ -22,6 +22,38 @@ const WordPage = () => {
         </div>
 
     `;
+   const nouveauMotBtn= document.querySelector("#word_btn");
+    nouveauMotBtn.addEventListener("click", suggererMot);
+
+
+    async function suggererMot(e){
+        e.preventDefault();
+
+        const mot= document.querySelector("#word").value;
+        const semblable= document.querySelector("#synonym").value;
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({
+                mot,
+                semblable,
+            
+
+            }),
+            headers: {
+                'Content-Type' : 'application/json',
+
+            },
+
+        };
+
+        const response= await fetch('/api/motsTemporaires',options);
+        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+        const newMot = await response.json(); // json() returns a promise => we wait for the data
+
+        console.log(' nouveau mot suggeré : ', newMot);
+    };
   };
   
   export default WordPage;
