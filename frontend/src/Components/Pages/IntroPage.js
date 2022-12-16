@@ -1,35 +1,43 @@
+import plus from "../../img/plus.png";
+import moins from "../../img/moins.png";
+import plus2 from "../../img/plus2.png";
+import moins2 from "../../img/moins2.png";
+import civil from "../../img/civil.png";
+import inco from "../../img/spy.png";
+import mrxx from "../../img/mrxx.png";
+
 const LoginPage = () => {
     
     const main = document.querySelector('main');
     main.innerHTML = `
         <div class="number-center">
         <div class="number-countainer">
-            <div class="number-but" id="nbr_joueur_moins"><p>-</p></div>
+            <img class="number-but" id="nbr_joueur_moins" src="${moins}">
             <div class="number-player">
                 <h1>Joueurs</h1>
                 <p id="nbr_joueurs"></p>
             </div>
-            <div class="number-but" id="nbr_joueur_plus"><p>+</p></div>
+            <img class="number-but" id="nbr_joueur_plus" src="${plus}">
         </div>
         </div>
         <div class="player-countainer">
-            <p class="player-buble"><span id="nbr_civils"></span> civils</p>
+            <div class="player-buble"><p><span id="nbr_civils"></span> Civils</p><img src="${civil}"></div>
             <div class="number-incognito">
-                <div class="inco-but" id="nbr_incognito_moins"><p>-</p></div>
-                <p class="player-buble"><span id="nbr_incognitos"></span> incognito</p>
-                <div class="inco-but" id="nbr_incognito_plus"><p>+</p></div>
+                <img class="inco-but" id="nbr_incognito_moins" src="${moins2}">
+                <div class="player-buble"><p><span id="nbr_incognitos"></span> Incognito</p><img src="${inco}"></div>
+                <img class="inco-but" id="nbr_incognito_plus" src="${plus2}">
             </div>
             <div class="number-incognito">
-                <div class="inco-but" id="nbr_mrxx_moins"><p>-</p></div>
-                <p class="player-buble"><span id="nbr_mrxx"></span> Mr.Xx</p>
-                <div class="inco-but" id="nbr_mrxx_plus"><p>+</p></div>
+                <img class="inco-but" id="nbr_mrxx_moins" src="${moins2}">
+                <div class="player-buble"><p><span id="nbr_mrxx"></span> Mr.Xx</p><img src="${mrxx}"></div>
+                <img class="inco-but" id="nbr_mrxx_plus" src="${plus2}">
             </div>
         </div>
         <div class="effect-container">
         
         </div>
         <div class="but-center">
-            <button class="start-but">Commencer</button>
+            <p class="start-but">Commencer</p>
         </div>
     `;
 
@@ -163,20 +171,20 @@ const LoginPage = () => {
             countCivils = 3;
             countIncognitos = 1;
             countMrxx = 0;
-            incognitoPlus.style.opacity = 0;
-            incognitoMoins.style.opacity = 0;
-            mrxxPlus.style.opacity = 1;
-            mrxxMoins.style.opacity = 0; 
+            afficherSigne(mrxxPlus);
+            effacerSigne(mrxxMoins);
+            effacerSigne(incognitoPlus);
+            effacerSigne(incognitoMoins);
         } 
 
         if(countJoueurs === 5) {
             countCivils = 3;
             countIncognitos = 1;
             countMrxx = 1;
-            incognitoPlus.style.opacity = 0;
-            incognitoMoins.style.opacity = 1;
-            mrxxPlus.style.opacity = 0;
-            mrxxMoins.style.opacity = 1;
+            effacerSigne(incognitoPlus);
+            afficherSigne(incognitoMoins);
+            effacerSigne(mrxxPlus);
+            afficherSigne(mrxxMoins);
         }
 
         nbrJoueurs.innerHTML = countJoueurs;

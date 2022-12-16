@@ -2,8 +2,8 @@
 import { Navbar as BootstrapNavbar } from 'bootstrap';
 import rules from '../../img/rules.png';
 import inco from '../../img/spy.png';
-import trophee from '../../img/trophe.png';
-import login from '../../img/login2.png';
+import idea from '../../img/idea.png';
+import login from '../../img/log-in.png';
 
 /**
  * Render the Navbar which is styled by using Bootstrap
@@ -19,7 +19,7 @@ const Navbar = () => {
     <ul>
       <img class="nav-link" data-uri="/rules" src="${rules}" alt="rules icon">
       <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
-      <img class="nav-link" data-uri="/intro" src="${trophee}" alt="trophee icon">
+      <img class="nav-link" data-uri="/intro" src="${idea}" alt="trophee icon">
     </ul>
     <img id="log" class="nav-link" data-uri="/party" src="${login}" alt="login icon">
   </nav>

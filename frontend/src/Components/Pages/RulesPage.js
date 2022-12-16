@@ -1,11 +1,11 @@
-import rules1 from "../../img/1.png";
-import rules2 from "../../img/2.png";
-import rules3 from "../../img/3.png";
-import rules4 from "../../img/4.png";
-import rules5 from "../../img/5.png";
-import rules6 from "../../img/6.png";
-import rules7 from "../../img/7.png";
-import rules8 from "../../img/8.png";
+import rules1 from "../../img/rules/1.png";
+import rules2 from "../../img/rules/2.png";
+import rules3 from "../../img/rules/3.png";
+import rules4 from "../../img/rules/4.png";
+import rules5 from "../../img/rules/5.png";
+import rules6 from "../../img/rules/6.png";
+import rules7 from "../../img/rules/7.png";
+import rules8 from "../../img/rules/8.png";
 
 let counter = 2;
 
