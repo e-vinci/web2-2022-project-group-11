@@ -491,8 +491,8 @@ nav ul img:hover {
 	cursor: pointer;
 	justify-content: center;
 	align-items: center;
-	visibility: hidden;
-	opacity: 0;
+	visibility: visible;
+	opacity: 1;
 }
 
 .mrxx-content {
@@ -545,8 +545,8 @@ nav ul img:hover {
 	cursor: default;
 	justify-content: center;
 	align-items: center;
-	visibility: hidden;
-	opacity: 0;
+	visibility: visible;
+	opacity: 1;
 }
 
 .character {
@@ -729,6 +729,7 @@ nav ul img:hover {
     font-size: 25px;
     animation: ajout-ok 2s infinite;
     transition: 0.2s ease-in-out;
+    user-select: none;
 }
 
 .action-ok:hover {
@@ -746,6 +747,7 @@ nav ul img:hover {
     border-radius: 20px;
     width: 300px;
     color: white;
+    user-select: none;
     font-weight: bold;
     letter-spacing: 1px;
     font-size: 23px;
@@ -918,11 +920,34 @@ nav ul img:hover {
     transition: 0.2s ease-in-out;
 }
 
+.cardC {
+    width: 150px;
+    height: 200px;
+    background: linear-gradient(#51ffce9f, #7dfafea8);
+    box-shadow: rgba(38, 57, 77, 0.174) 0px 20px 30px -10px;
+    border: 2px solid rgba(255, 255, 255, 0.138);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    transition: 0.2s ease-in-out;
+}
+
 .card-mort {
     backdrop-filter: brightness(10%);
 }
 
 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: rgba(38, 57, 77, 0.656) 0px 20px 30px -10px;
+}
+
+.cardC:hover {
     transform: translateY(-5px);
     box-shadow: rgba(38, 57, 77, 0.656) 0px 20px 30px -10px;
 }

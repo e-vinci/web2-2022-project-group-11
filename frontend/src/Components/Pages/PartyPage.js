@@ -11,45 +11,21 @@ import card from "../../img/carte.png";
 import chevronD from "../../img/chevron-character-droit.png";
 import chevronG from "../../img/chevron-character-gauche.png";
 import warning from "../../img/warning.png";
+import { clearPage } from '../../utils/render';
+
 
 const PartyPage = () => {
-    const main = document.querySelector('main');
     const nombreJoueurs= localStorage.getItem("nbrJoueurs");
-    const nombreMrXX= localStorage.getItem("nbrIncognitos");
-    const nombreIncognitos= localStorage.getItem("nbrX");
-
+    const nombreMrXX= localStorage.getItem("nbrX");
+    const nombreIncognitos= localStorage.getItem("nbrIncognitos");
+    clearPage();
     
-
+    const main = document.querySelector('main');
+    
     main.innerHTML = `
-        <div class="info-container">
-            <div class="">
-                <p> ${nombreJoueurs}</p>
-                <p> ${nombreIncognitos}</p>
-                <p> ${nombreMrXX}</p>
-                <p id="bouton" > lancer la game </p> 
-            </div>
-        </div>
-        <div class="action-content">
-            <div class="action-card">
-                <h1>Joueur 1</h1>
-                <h2>Choisis une carte</h2>
-                <img src="${card}">
-                <p class="action-ok">OK</p>
-            </div>
-        </div>
-        <div class="ajouter-content">
-            <div class="ajouter-card">
-                <h2>Choisis ton personnage</h2>
-                <div class="character">
-                    <img class="chara-chevron" src="${chevronG}">
-                    <img class="chara-avat" src="${test5}">
-                    <img class="chara-chevron" src="${chevronD}">
-                </div>
-                <input class="ajouter-input" type="text" placeholder="Choisis un nom" name="nom">
-                <h3>Saisis ton nom pour dévoiler ton mot secret</h3>
-                <p class="ajouter-ok">Lis ton mot secret</p>
-            </div>
-        </div>
+        <div class="pop-up">
+        
+        
         <div class="civil-content">
             <div class="civil-card">
                 <h1>1 Civil(e) en moins !</h1>
@@ -67,14 +43,15 @@ const PartyPage = () => {
                 <p class="action-ok">OK</p>
             </div>
         </div>
+        </div>
         <p class="invi">i</p>
         <div class="tour-container">
             <div class="tour-line">
             </div>
             <img src="${warning}">
             <div class="tour-text">
-                <h1>Joueur 1</h1>
-                <p>Decrivez votre mot secret dans l'ordre indiqué,....</p>
+                <h1 id="i-title">Joueur 1</h1>
+                <p id="i-message">Choisis une carte</p>
             </div>
         </div>
         <div class="info-container">
@@ -83,11 +60,11 @@ const PartyPage = () => {
                 <div class="rest-container">
                     <div class="rest">
                         <img src="${mrxx}">
-                        <p>2</p>
+                        <p>${nombreMrXX}</p>
                     </div>
                     <div class="rest">
                         <img src="${spy}">
-                        <p>1</p>
+                        <p>${nombreIncognitos}</p>
                     </div>
                 </div>
             </div>
@@ -95,21 +72,7 @@ const PartyPage = () => {
             </div>
         </div>
         <div class="card-container">
-            <div class="card">
-                <img class="avatwho" src="${who}">
-            </div>
-            <div class="card">
-                <img class="avatwho" src="${who}">
-            </div>
-            <div class="card">
-                <img class="avatwho" src="${who}">
-            </div>
-            <div class="card">
-                <img class="avatwho" src="${who}">
-            </div>
-            <div class="card">
-                <img class="avatwho" src="${who}">
-            </div>
+            
             <div class="card card-mort">
                 <img class="avat" src="${mrxx}">
                 <p class="avatname">Stalone</p>
@@ -147,41 +110,132 @@ const PartyPage = () => {
             <p>Passer au vote</p>
         </div>
     `;
-    const bouton= document.querySelector('#bouton');
-    bouton.addEventListener("click",createPartie); 
+
+    const cardContainer = document.querySelector(".card-container");
+
+    createCard();
 
 
+    const popUp = document.querySelector(".pop-up");
+    const infoTitle = document.querySelector("#i-title");
+    const infoMessage = document.querySelector("#i-message");
 
-    async function createPartie(e){
-        e.preventDefault();
-        console.log("hello");
-        const idMembre=1;
+    // eslint-disable-next-line prefer-const
+    
+    let o = 0;
 
-        const options = {
-            method: 'POST',
-            body: JSON.stringify({
-                nombreJoueurs,
-                nombreIncognitos,
-                nombreMrXX,
-                idMembre,
+    lancerPopUpAction(o);
+    infoTitle.innerHTML = `Joueur ${o+1}`;
+    infoMessage.innerHTML = `Choisis une carte`;
 
-            }),
-            headers: {
-                'Content-Type' : 'application/json',
+    /* while(o < nombreJoueurs) {
+        
+    }; */
 
-            },
+    /* u = 0;
+    let pop = ``;
+    while(u < nombreJoueurs) {
+        pop += `
+            <div class="action-content">
+                <div class="action-card">
+                    <h1>Joueur ${u+1}</h1>
+                    <h2>Choisis une carte</h2>
+                    <img src="${card}">
+                    <p class="action-ok">OK</p>
+                </div>
+            </div>
+        `;
 
-        };
-        console.log(options)
+        popUp.innerHTML = pop;
+        
+        
+    }; */
 
-        const response= await fetch('/api/parties',options);
-        console.log(response);
-        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-        const newPartie = await response.json(); // json() returns a promise => we wait for the data
+    function createCard() {
+        let u = 0;
+        let cards = ``;
+        while (u < nombreJoueurs) {
+            cards += `
+                <div class="cardC" id="${u+1}">
+                    <img class="avatwho" src="${who}">
+                </div>
+            `;
+            u += 1;
+        }
 
-        console.log('New partie added : ', newPartie);
+        cardContainer.innerHTML = cards;
+        
     };
+
+    const clickCard = document.querySelector('.cardC');
+
+    clickCard.addEventListener('click', () => {
+        let okayr = clickCard.id;
+        console.log(okayr);
+        lancerPopUpAjouter();
+        
+    });
+
+
+    function lancerPopUpAction(object) {
+        // eslint-disable-next-line prefer-const
+        let pop = `
+            <div class="action-content">
+                <div class="action-card">
+                    <h1>Joueur ${object+1}</h1>
+                    <h2>Choisis une carte</h2>
+                    <img src="${card}">
+                    <p class="action-ok">OK</p>
+                </div>
+            </div>
+        `;
+
+        popUp.innerHTML = pop;
+    };
+
+
+    function lancerPopUpAjouter() {
+        // eslint-disable-next-line prefer-const
+        let pop = `
+            <div class="ajouter-content">
+                <div class="ajouter-card">
+                    <h2>Choisis ton personnage</h2>
+                    <div class="character">
+                        <img class="chara-chevron" src="${chevronG}">
+                        <img class="chara-avat" src="${test5}">
+                        <img class="chara-chevron" src="${chevronD}">
+                    </div>
+                    <input class="ajouter-input" type="text" placeholder="Choisis un nom" name="nom">
+                    <h3>Saisis ton nom pour dévoiler ton mot secret</h3>
+                    <p class="ajouter-ok" id="ajouter-perso">Lis ton mot secret</p>
+                </div>
+            </div>
+        `;
+        
+        popUp.innerHTML = pop;
+    };
+
+    const ajouter = document.querySelector("#ajouter-perso");
+
+    ajouter.addEventListener('click', () => {
+        popUp.innerHTML = ``;
+    });
+
+
+    const action = document.querySelector(".action-content");
+    
+    action.addEventListener('click', () => {
+        popUp.innerHTML = ``;
+    }); 
+
+
+    
+    
+
+
+
 };
+
 
 export default PartyPage;

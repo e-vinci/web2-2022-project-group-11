@@ -4,6 +4,7 @@ const WordPage = () => {
     <p class="ranking">Vous devez etre connecté pour ajouter un mot</p>
     
     `;
+
   };
   
   export default WordPage;
