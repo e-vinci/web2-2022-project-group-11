@@ -125,5 +125,6 @@ const WordPage =async  () => {
    
    
   };
+}
   
   export default WordPage;
