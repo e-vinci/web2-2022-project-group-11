@@ -6,6 +6,8 @@ import RankingPage from '../Pages/RankingPage';
 import LoginPage from '../Pages/LoginPage';
 import IntroPage from '../Pages/IntroPage';
 import PartyPage from '../Pages/PartyPage';
+import Logout from '../Logout/LogoutPage';
+
 
 const routes = {
   '/': HomePage,
@@ -16,6 +18,8 @@ const routes = {
   '/intro': IntroPage,
   '/party': PartyPage,
   '/new': NewPage,
+  '/logout': Logout,
+
 };
 
 export default routes;

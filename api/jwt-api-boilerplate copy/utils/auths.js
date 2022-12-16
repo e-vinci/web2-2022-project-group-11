@@ -30,5 +30,4 @@ const isAdmin = (req, res, next) => {
   return next();
 };
 
-
 module.exports = { authorize , isAdmin};

@@ -1,3 +1,5 @@
+import { setAuthenticatedUser } from "../../utils/auths";
+
 const LoginPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
@@ -65,9 +67,10 @@ const LoginPage = () => {
         const response= await fetch('/api/auths/register',options);
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-        const newUser = await response.json(); // json() returns a promise => we wait for the data
+        const authenticatedUser = await response.json(); // json() returns a promise => we wait for the data
 
         console.log('New user added : ', newUser);
+        setAuthenticatedUser(authenticatedUser);
     };
 
 
@@ -96,9 +99,11 @@ const LoginPage = () => {
         const response= await fetch('/api/auths/login',options);
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-        const loggedUser = await response.json(); // json() returns a promise => we wait for the data
+        const authenticatedUser = await response.json(); // json() returns a promise => we wait for the data
 
         console.log('New logged user : ', loggedUser);
+        setAuthenticatedUser(authenticatedUser);
+
     };
 
 

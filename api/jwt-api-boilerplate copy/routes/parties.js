@@ -16,7 +16,7 @@ router.get('/:code',(req,res)=> {
    res.json(readPartieByCode(req.params.code));
 })
 
-router.post('/', authorize, (req,res)=> {
+router.post('/',  (req,res)=> {
     const nombreJoueurs=  req.body.nombreJoueurs;
     //todo changer ici 
 

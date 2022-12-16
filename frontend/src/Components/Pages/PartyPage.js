@@ -30,6 +30,7 @@ const PartyPage = () => {
         console.log("hello");
         const idMembre=1;
 
+
         const options = {
             method: 'POST',
             body: JSON.stringify({
@@ -38,9 +39,12 @@ const PartyPage = () => {
                 nombreMrXX,
                 idMembre,
 
+
             }),
             headers: {
                 'Content-Type' : 'application/json',
+                
+
 
             },
 
