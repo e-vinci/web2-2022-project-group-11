@@ -124,6 +124,7 @@ const WordPage = async  () => {
 
         console.log(' nouveau mot suggeré : ', newMot);
     };
+    //icic je rajoute le coms
 
    
    

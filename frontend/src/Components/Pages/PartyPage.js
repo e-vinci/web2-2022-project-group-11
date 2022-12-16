@@ -145,7 +145,6 @@ const PartyPage = () => {
                 </div>
             </div>
         `;
-
         popUp.innerHTML = pop;
         
         
