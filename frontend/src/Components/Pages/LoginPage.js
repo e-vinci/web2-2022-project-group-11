@@ -1,29 +1,33 @@
 import Navigate from "../Router/Navigate";
-import RegisterPage from "./RegisterPage";
+import down from '../../img/down.png';
 const LoginPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
-    <section>
+    <div class="wrapper-box">
+        <div class="curved" id="curved"></div>
         <div class="wrapper">
         <h1>Connexion</h1>
             <div class="input-box"> 
                 <label>Username </label>
-                <input type="username" name="username" id= "username">
+                <input type="username" name="username" placeholder="Pseudo" id= "username">
             </div>
             
             <div class="input-box"> 
                 <label>Password </label>
-                <input  type="password" name="password" id="password">
+                <input  type="password" name="password" placeholder="Mot de passe" id="password">
             </div>
             <div>
             <button id="login_btn" type="submit">Se connecter</button>
             </div>
         </form>
-        <p>Pas de compte ? <button id="registerLinkBtn" type="submit">S'inscrire</button>
-
+        <div class=no-account>
+        <br>
+        <p>Pas de compte ? Inscrivez vous </p>
+        <p><img src="${down}" width=10% height=10% alt="Indication"> </p>
+        <p><button id="registerLinkBtn" type="">Inscription</button></p>
         </div>
-
-    </section>
+        </div>
+        </div>
     `;
 
     const registerLink = document.getElementById('registerLinkBtn');

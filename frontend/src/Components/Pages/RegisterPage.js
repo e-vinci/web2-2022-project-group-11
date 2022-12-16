@@ -1,26 +1,28 @@
 const RegisterPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
-<section>
+    <div class="wrapper-box">
+    <div class="wrapper">
     <h1>Inscription</h1>
     <form method="post" action="" id="register">
-        <div>
+        <div class="input-box">
             <label>Email </label>
-            <input type="email" name="email" id="email" placeholder="Exemple : moha@vinci.be">
+            <input type="email" name="email" id="email" placeholder="Entrez un e-mail">
         </div>
-        <div>
+        <div class="input-box">
         <label>Pseudo </label>
-        <input type="text" name="username" id="username" placeholder="Exemple : Senhaji" />
+        <input type="text" name="username" id="username" placeholder="Entrez un pseudo" />
         </div>
-        <div>
+        <div class="input-box">
             <label>Mot de passe </label>
-            <input type="password" name="password" id="password"/>
+            <input type="password" name="password" placeholder="Entrez un mot de passe"id="password"/>
         </div>
-        <div>
-            <input type="submit" value="M'enregistrer" id="register_btn">
+        <div>         
+        <button id="register_btn" type="">S'inscrire</button>
         </div>
     </form>
-</section>
+    </div>
+    </div>
     `;
 
     const registerBtn = document.querySelector("#register_btn");
