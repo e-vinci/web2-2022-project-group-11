@@ -1165,3 +1165,27 @@ nav ul img:hover {
 	border-radius: 9px;
 	transition: 1s;
 }
+
+table {
+    margin: 5px;
+  }
+  
+  table, table * {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #CCC;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #FFF;
+  }
+  
+  thead {
+    color: rgb(226, 80, 43);
+    background-color: aquamarine;
+    font-size: large;
+  }
