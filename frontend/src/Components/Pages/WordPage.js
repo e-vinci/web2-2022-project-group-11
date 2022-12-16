@@ -1,5 +1,6 @@
 const WordPage = () => {
     const main = document.querySelector('main');
+    const admin = document.querySelector('admin');
     main.innerHTML = `
     <p class="ranking">Vous devez etre connecté pour ajouter un mot</p>
     
@@ -22,6 +23,31 @@ const WordPage = () => {
         </div>
 
     `;
+
+    //if (isAdmin){
+    admin.innerHTML = 
+        ` 
+        <h1>Mots et synonymes soumis</h1>
+        <table>
+        <thead>
+            <tr>
+                <th>Mot</th>
+                <th>Sujet</th>  
+            </tr>
+        </thead>
+        <tbody>
+        
+                <tr>
+                    <td>exemple mot </td>
+                    <td>exemple synonyme </td>
+                </tr>
+        
+        </tbody>
+    </table>
+    `;
+
+  //  }
+
   };
   
   export default WordPage;
