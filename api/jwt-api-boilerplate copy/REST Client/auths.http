@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
     "username":"1",
-    "password":"manager"
+    "password":"1"
 }
 
 
@@ -24,8 +24,8 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "email": "mymail",
-    "username":"1",
+    "email": "sdvsd",
+    "username":"2",
     "password":"manager"
 }
 

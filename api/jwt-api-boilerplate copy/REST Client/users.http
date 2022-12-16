@@ -10,7 +10,7 @@ POST {{baseUrl}}/users/
 Content-Type: application/json
 
 {
-    "username" : "quentin",
+    "user",
     "email": "mymail",
     "password": "mdp"
 }
