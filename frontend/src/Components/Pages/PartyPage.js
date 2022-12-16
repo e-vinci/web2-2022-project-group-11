@@ -21,14 +21,7 @@ const PartyPage = () => {
     
 
     main.innerHTML = `
-        <div class="info-container">
-            <div class="">
-                <p> ${nombreJoueurs}</p>
-                <p> ${nombreIncognitos}</p>
-                <p> ${nombreMrXX}</p>
-                <p id="bouton" > lancer la game </p> 
-            </div>
-        </div>
+        
         <div class="action-content">
             <div class="action-card">
                 <h1>Joueur 1</h1>
@@ -147,13 +140,18 @@ const PartyPage = () => {
             <p>Passer au vote</p>
         </div>
     `;
-    const bouton= document.querySelector('#bouton');
-    bouton.addEventListener("click",createPartie); 
+    sayHello();
+
+    function sayHello(){
+        console.log("coucou toi");
+    }
+    createPartie();
+    
 
 
 
     async function createPartie(e){
-        e.preventDefault();
+       // e.preventDefault();
         console.log("hello");
         const idMembre=1;
 

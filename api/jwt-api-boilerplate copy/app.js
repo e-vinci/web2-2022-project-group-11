@@ -8,7 +8,6 @@ const corsOptions = {
 };
 
 const usersRouter = require('./routes/users');
-const pizzaRouter = require('./routes/pizzas');
 const authsRouter = require('./routes/auths');
 const motsRouter= require('./routes/mots');
 const partiesRouter= require('./routes/parties');
@@ -29,7 +28,6 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 
 app.use('/users', usersRouter);
-app.use('/pizzas', pizzaRouter);
 app.use('/auths', authsRouter);
 app.use('/mots', cors(corsOptions), motsRouter);
 app.use('/parties', partiesRouter);

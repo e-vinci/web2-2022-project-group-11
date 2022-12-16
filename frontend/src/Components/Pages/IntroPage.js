@@ -6,6 +6,7 @@ import moins2 from "../../img/moins2.png";
 import civil from "../../img/civil.png";
 import inco from "../../img/spy.png";
 import mrxx from "../../img/mrxx.png";
+import { createPartie } from "./PartyPage";
 
 const LoginPage = () => {
     
