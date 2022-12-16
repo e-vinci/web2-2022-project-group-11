@@ -1,5 +1,6 @@
 const express= require('express');
 const { createOneMot } = require('../models/mot');
+const {authorize} = require('../utils/auths');
 
 const { createOneMotTemporaire , readAllMotsTemporaires, readMotsKo} = require('../models/motsTemporaires');
 
