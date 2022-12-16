@@ -14,7 +14,6 @@ import warning from "../../img/warning.png";
 
 const PartyPage = () => {
     const main = document.querySelector('main');
-    let tableauCaractere = [1,2,3,4,5,6,7,8,9,10,11];
     main.innerHTML = `
         <div class="action-content">
             <div class="action-card">
