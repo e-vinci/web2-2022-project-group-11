@@ -7,7 +7,7 @@ import rules6 from "../../img/rules/6.png";
 import rules7 from "../../img/rules/7.png";
 import rules8 from "../../img/rules/8.png";
 
-let counter = 2;
+// let counter = 2;
 
 const RulesPage = () => {
     const main = document.querySelector('main');

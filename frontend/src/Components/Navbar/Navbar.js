@@ -19,7 +19,7 @@ const Navbar = () => {
     <ul>
       <img class="nav-link" data-uri="/rules" src="${rules}" alt="rules icon">
       <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
-      <img class="nav-link" data-uri="/intro" src="${idea}" alt="trophee icon">
+      <img class="nav-link" data-uri="/word" src="${idea}" alt="trophee icon">
     </ul>
     <img id="log" class="nav-link" data-uri="/login" src="${login}" alt="login icon">
   </nav>

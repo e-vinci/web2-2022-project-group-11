@@ -1,17 +1,16 @@
-import GamePage from '../Pages/GamePage';
+
 import HomePage from '../Pages/HomePage';
 import NewPage from '../Pages/NewPage';
 import RulesPage from '../Pages/RulesPage';
-import RankingPage from '../Pages/RankingPage';
+import WordPage from '../Pages/WordPage';
 import LoginPage from '../Pages/LoginPage';
 import IntroPage from '../Pages/IntroPage';
 import PartyPage from '../Pages/PartyPage';
 
 const routes = {
   '/': HomePage,
-  '/game': GamePage,
   '/rules': RulesPage,
-  '/ranking': RankingPage,
+  '/word': WordPage,
   '/login': LoginPage,
   '/intro': IntroPage,
   '/party': PartyPage,

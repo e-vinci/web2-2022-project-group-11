@@ -1,4 +1,5 @@
 import play from "../../img/play.png";
+import Navigate from "../Router/Navigate";
 
 
 const HomePage = async () => {
@@ -6,7 +7,7 @@ const HomePage = async () => {
   main.innerHTML = `
   <div class="home">
     <p><span>"INCO</span><span>GNITO"</span></p>
-    <img src="${play}">
+    <img id="topage" data-uri="/intro" src="${play}">
   </div>
   
   `;
@@ -20,6 +21,14 @@ const HomePage = async () => {
 }catch (err) {
   console.error('HomePage::error: ', err);
 }
+
+const playBtn = document.querySelector("#topage");
+    playBtn.addEventListener("click", toPage );
+    
+    function toPage(){
+        Navigate('/intro');
+    }
+
 };
 
 
