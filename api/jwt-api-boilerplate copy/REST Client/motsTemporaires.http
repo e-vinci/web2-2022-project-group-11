@@ -1,0 +1,25 @@
+@baseUrl = http://localhost:3000
+
+
+
+###
+GET {{baseUrl}}/motsTemporaires/
+
+
+###
+POST {{baseUrl}}/motsTemporaires/
+Content-Type: application/json
+
+{
+    "mot": "fraise",
+    "semblable": "cerise"
+    
+}
+
+###
+PATCH {{baseUrl}}/motsTemporaires/4
+Content-Type: application/json
+
+{
+    "isOk": true
+}

@@ -7,6 +7,7 @@ import civil from "../../img/civil.png";
 import inco from "../../img/spy.png";
 import mrxx from "../../img/mrxx.png";
 
+
 const LoginPage = () => {
     
     const main = document.querySelector('main');

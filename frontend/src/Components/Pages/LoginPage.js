@@ -1,38 +1,41 @@
+import Navigate from "../Router/Navigate";
+import down from '../../img/down.png';
 const LoginPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
-    <section>
-
-        <h1>connexion</h1>
-    
-        <form method="post" action="" id="login">
-            <div>
-                <label>Email : </label>
-                <input type="email" name="email" id= "email">
-            </div>
-            <div>
+    <div class="wrapper-box">
+        <div class="curved" id="curved"></div>
+        <div class="wrapper">
+        <h1>Connexion</h1>
+            <div class="input-box"> 
                 <label>Username </label>
-                <input type="username" name="login" value="" id= "username">
+                <input type="username" name="username" placeholder="Pseudo" id= "username">
             </div>
             
-            <div>
-                <label>Password : </label>
-                <input  id="password"  name="password" type="password">
+            <div class="input-box"> 
+                <label>Password </label>
+                <input  type="password" name="password" placeholder="Mot de passe" id="password">
             </div>
             <div>
-            <p id="login_btn"> Se connecter </p>
-            <p id="register_btn"> S'inscrire </p>
-
+            <button id="login_btn" type="submit">Se connecter</button>
             </div>
         </form>
-        
-        <p>Pas de compte ? Inscrivez vous <a class="nav-link" data-uri="/rules">içi</a><p>
-
-    </section>
+        <div class=no-account>
+        <br>
+        <p>Pas de compte ? Inscrivez vous </p>
+        <p><img src="${down}" width=10% height=10% alt="Indication"> </p>
+        <p><button id="registerLinkBtn" type="">Inscription</button></p>
+        </div>
+        </div>
+        </div>
     `;
 
-    const registerBtn = document.querySelector("#register_btn");
-    registerBtn.addEventListener("click", register);
+    const registerLink = document.getElementById('registerLinkBtn');
+    registerLink.addEventListener('click', () => {
+        Navigate('/register');
+        console.log('hello');
+    })
+
     const loginBtn = document.querySelector("#login_btn");
     loginBtn.addEventListener("click", login);
    
@@ -69,6 +72,7 @@ const LoginPage = () => {
 
         console.log('New user added : ', newUser);
     };
+
 
 
     async function login(e){
