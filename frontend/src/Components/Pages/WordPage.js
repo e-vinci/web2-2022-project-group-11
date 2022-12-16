@@ -29,6 +29,8 @@ const WordPage = () => {
             <tr>
                 <th>Mot</th>
                 <th>Synonyme</th>
+                <th>Validation</th>
+                <th>Refus</th>
             </tr>
         </thead>
         <tbody>
@@ -107,5 +109,5 @@ const WordPage = () => {
         console.log(' nouveau mot suggeré : ', newMot);
     };
   };
-  
+}
   export default WordPage;
