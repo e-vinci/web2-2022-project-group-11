@@ -14,8 +14,8 @@ POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"1",
-    "password":"1"
+    "username":"2",
+    "password":"manager"
 }
 
 

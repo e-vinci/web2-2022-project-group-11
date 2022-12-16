@@ -19,6 +19,16 @@ function readMotsKo(){
 
     }
     return motsKo;
+};
+
+function deleteMotTemporaire(mot){
+    const mots = parse(jsonDbPath,defaultMotsTemporaires);
+    const foundIndex = mots.findIndex(mot=> mot.mot== mot);
+
+    const motSupprime = mots[foundIndex];
+    mots.pop(motSupprime);
+    serialize(jsonDbPath,mots);
+
 }
 
 
@@ -48,4 +58,4 @@ function getNextId() {
     return nextId;
   }
 
-  module.exports={createOneMotTemporaire, readAllMotsTemporaires,readMotsKo};
+  module.exports={createOneMotTemporaire,deleteMotTemporaire, readAllMotsTemporaires,readMotsKo};

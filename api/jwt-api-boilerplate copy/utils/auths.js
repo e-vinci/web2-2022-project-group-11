@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { readOneUserFromUsername } = require('../models/users');
 
-const jwtSecret = 'ilovemypizza!';
+const jwtSecret = 'ilovemyGame!';
 
 const authorize = (req, res, next) => {
   const token = req.get('authorization');

@@ -126,8 +126,39 @@ const WordPage = async  () => {
     };
     //icic je rajoute le coms
 
+   const accepterBtn=  document.querySelector(".accepter");
+   accepterBtn.addEventListener("click",validerMot);
+
+   async function validerMot(){
+        const id= 1;
+        const isOk=true;
+        const options = {
+            method: 'PATCH',
+            body: JSON.stringify({
+            
+                isOk
+
+            }),
+            headers: {
+                'Content-Type' : 'application/json',
+
+            },
+
+            
+
+
+   };
+        console.log(id);
+
+        const response= await fetch(`/api/motsTemporaires/${id}`,options);
+       
+        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+        const motvalidé = await response.json(); // json() returns a promise => we wait for the data
+
+        console.log(' mot validé: ', motvalidé);
    
    
   };
+}
   
   export default WordPage;
