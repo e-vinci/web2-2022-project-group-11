@@ -1,4 +1,4 @@
-const WordPage = () => {
+const WordPage =async () => {
     const main = document.querySelector('main');
     main.innerHTML = `
     <p class="ranking">Vous devez etre connecté pour ajouter un mot</p>
@@ -22,6 +22,18 @@ const WordPage = () => {
         </div>
 
     `;
+    try {
+        console.log("ok"); 
+        const response= await fetch('/api/motsTemporaires')
+            if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+          const motsTemporaires= await response.json();
+      
+          console.log(motsTemporaires);
+      }catch (err) {
+        console.error('wordPage::error: ', err);
+    }
+
+
    const nouveauMotBtn= document.querySelector("#word_btn");
     nouveauMotBtn.addEventListener("click", suggererMot);
 
@@ -47,6 +59,8 @@ const WordPage = () => {
 
         };
 
+
+
         const response= await fetch('/api/motsTemporaires',options);
         if(response.status==401) main.innerHTML+= `<p> vous devez etre connecté pour suggerer un mot. `;
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
@@ -54,6 +68,9 @@ const WordPage = () => {
 
         console.log(' nouveau mot suggeré : ', newMot);
     };
+
+   
+   
   };
   
   export default WordPage;
