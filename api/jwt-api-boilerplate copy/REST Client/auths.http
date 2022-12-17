@@ -10,6 +10,7 @@ Content-Type: application/json
 }
 
 ### Login the default admin
+# @name manager
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
@@ -24,9 +25,15 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "email": "sdvsd",
     "username":"2",
     "password":"manager"
+=======
+    "email": "mymail",
+    "username":"admin",
+    "password":"admin"
+>>>>>>> authorizeBranch
 }
 
 ### Login the manager user

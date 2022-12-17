@@ -1,6 +1,8 @@
 const express= require('express');
 const{readAllParties,createOnePartie,readPartieByCode} = require('../models/parties');
 const {readRandomMot} = require('../models/mot');
+const {authorize} = require('../utils/auths');
+
 
 const router= express.Router();
 
@@ -14,7 +16,7 @@ router.get('/:code',(req,res)=> {
    res.json(readPartieByCode(req.params.code));
 })
 
-router.post('/', (req,res)=> {
+router.post('/',  (req,res)=> {
     const nombreJoueurs=  req.body.nombreJoueurs;
     //todo changer ici 
 

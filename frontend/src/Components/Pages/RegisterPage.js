@@ -1,3 +1,6 @@
+import { setAuthenticatedUser } from "../../utils/auths";
+
+
 const RegisterPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `

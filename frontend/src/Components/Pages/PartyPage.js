@@ -120,6 +120,7 @@ const PartyPage = () => {
     const infoTitle = document.querySelector("#i-title");
     const infoMessage = document.querySelector("#i-message");
 
+<<<<<<< HEAD
     // eslint-disable-next-line prefer-const
     
     let o = 0;
@@ -127,6 +128,23 @@ const PartyPage = () => {
     lancerPopUpAction(o);
     infoTitle.innerHTML = `Joueur ${o+1}`;
     infoMessage.innerHTML = `Choisis une carte`;
+=======
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({
+                nombreJoueurs,
+                nombreIncognitos,
+                nombreMrXX,
+                idMembre,
+
+
+            }),
+            headers: {
+                'Content-Type' : 'application/json',
+                
+
+>>>>>>> authorizeBranch
 
     /* while(o < nombreJoueurs) {
         
