@@ -6,9 +6,20 @@
 GET {{baseUrl}}/motsTemporaires/
 
 
+### Login the default admin
+# @name manager
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"1",
+    "password":"1"
+}
+
 ###
 POST {{baseUrl}}/motsTemporaires/
 Content-Type: application/json
+Authorization: {{manager.response.body.token}}
 
 {
     "mot": "fraise",

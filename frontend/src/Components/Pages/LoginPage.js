@@ -105,7 +105,7 @@ const LoginPage = () => {
 
         const authenticatedUser = await response.json(); // json() returns a promise => we wait for the data
 
-        console.log('New logged user : ', loggedUser);
+        console.log('New logged user : ', authenticatedUser);
         setAuthenticatedUser(authenticatedUser);
 
     };

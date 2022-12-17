@@ -25,15 +25,9 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
     "email": "sdvsd",
     "username":"2",
     "password":"manager"
-=======
-    "email": "mymail",
-    "username":"admin",
-    "password":"admin"
->>>>>>> authorizeBranch
 }
 
 ### Login the manager user

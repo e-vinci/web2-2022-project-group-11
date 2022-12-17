@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const STORE_NAME = 'user';
 const REMEMBER_ME = 'remembered';
 
@@ -24,20 +23,12 @@ const setAuthenticatedUser = (authenticatedUser) => {
   if (remembered) localStorage.setItem(STORE_NAME, serializedUser);
   else sessionStorage.setItem(STORE_NAME, serializedUser);
 
-=======
-let currentUser;
-
-const getAuthenticatedUser = () => currentUser;
-
-const setAuthenticatedUser = (authenticatedUser) => {
->>>>>>> authorizeBranch
   currentUser = authenticatedUser;
 };
 
 const isAuthenticated = () => currentUser !== undefined;
 
 const clearAuthenticatedUser = () => {
-<<<<<<< HEAD
   localStorage.clear();
   sessionStorage.clear();
   currentUser = undefined;
@@ -62,10 +53,3 @@ export {
   getRememberMe,
   setRememberMe,
 };
-=======
-  currentUser = undefined;
-};
-
-// eslint-disable-next-line object-curly-newline
-export { getAuthenticatedUser, setAuthenticatedUser, isAuthenticated, clearAuthenticatedUser };
->>>>>>> authorizeBranch
