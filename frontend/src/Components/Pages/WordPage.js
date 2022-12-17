@@ -38,8 +38,8 @@ const WordPage = async  () => {
     }
     };
 
-    const mots = await readAllMotsTemporaires;
-    const motsTemporairesAsHtmlTable = getHtmlMotsTemporairesTableAsString(mots);
+    const words = await readAllMotsTemporaires;
+    const motsTemporairesAsHtmlTable = getHtmlMotsTemporairesTableAsString(words);
 
     function getHtmlMotsTemporairesTableAsString(words) {
         console.log("coucou");
