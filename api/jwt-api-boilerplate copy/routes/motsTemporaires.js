@@ -1,6 +1,6 @@
 const express= require('express');
 const { createOneMot } = require('../models/mot');
-const {authorize} = require('../utils/auths');
+const {authorize, isAdmin} = require('../utils/auths');
 
 const { createOneMotTemporaire , deleteMotTemporaire, readAllMotsTemporaires, readMotsKo} = require('../models/motsTemporaires');
 
@@ -14,7 +14,7 @@ router.get('/',(req,res)=> {
 });
 
 
-router.post('/',  (req,res)=> {
+router.post('/', authorize, (req,res)=> {
     const mot= req?.body?.mot?.length !== 0 ? req.body.mot : undefined;
     const semblable= req?.body?.semblable?.length !== 0 ? req.body.semblable : undefined;
     if(!mot || !semblable) return res.sendStatus(400);
@@ -24,7 +24,7 @@ router.post('/',  (req,res)=> {
 
 });
 
-router.patch('/:id',(req,res)=> {
+router.patch('/:id',authorize, isAdmin, (req,res)=> {
     const allMotsTemp= readAllMotsTemporaires();
 
     const isOk = req.body.ok;

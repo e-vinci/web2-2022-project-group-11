@@ -1,6 +1,8 @@
 const path = require('node:path');
 const escape =  require('escape-html');
 const { parse, serialize } = require('../utils/json');
+//import randomInteger from 'random-int';
+
 
 const jsonDbPath = path.join(__dirname, '/../data/mots.json');
 const defaultMots=[];
@@ -13,6 +15,11 @@ function readAllMots(){
 function readRandomMot(){
     const mots= parse(jsonDbPath,defaultMots);
     //prends le 0 en compte
+    //ajout d'une librairie externe non vue en cours.
+
+
+    //const randomInt = randomInteger(1, getNextId()-1);
+
     const randomInt= (Math.floor(Math.random() * getNextId()-1) + 1);
     const indexFound = mots.findIndex((mot)=> mot.id===randomInt);
     return mots[indexFound];

@@ -25,9 +25,9 @@ const authorize = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  const { username } = req.user;
+  const { isAdmin } = req.user;
 
-  if (username !== 'admin') return res.sendStatus(403);
+  if (isAdmin !== true) return res.sendStatus(403);
   return next();
 };
 

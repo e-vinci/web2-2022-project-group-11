@@ -1,5 +1,7 @@
 import Navigate from "../Router/Navigate";
 import down from '../../img/down.png';
+import { getAuthenticatedUser, setAuthenticatedUser } from "../../utils/auths";
+import Logout from "../Logout/Logout";
 const LoginPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
@@ -25,10 +27,15 @@ const LoginPage = () => {
         <p>Pas de compte ? Inscrivez vous </p>
         <p><img src="${down}" width=10% height=10% alt="Indication"> </p>
         <p><button id="registerLinkBtn" type="">Inscription</button></p>
+        <p><button id="logout" type="">Se deconnecter</button></p>
+
         </div>
         </div>
         </div>
     `;
+
+    const logoutBtn = document.querySelector('#logout');
+    logoutBtn.addEventListener("click", Logout);
 
     const registerLink = document.getElementById('registerLinkBtn');
     registerLink.addEventListener('click', () => {
@@ -103,6 +110,8 @@ const LoginPage = () => {
         const loggedUser = await response.json(); // json() returns a promise => we wait for the data
 
         console.log('New logged user : ', loggedUser);
+        setAuthenticatedUser(loggedUser);
+        console.log(getAuthenticatedUser());
     };
 
 

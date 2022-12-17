@@ -1,4 +1,5 @@
 const express = require('express');
+const { setAuthenticatedUser, getAuthenticatedUser } = require('../../../frontend/src/utils/auths');
 const { register, login } = require('../models/users');
 
 const router = express.Router();
@@ -27,6 +28,9 @@ router.post('/login', async (req, res) => {
   const authenticatedUser = await login(username, password);
 
   if (!authenticatedUser) return res.sendStatus(401); // 401 Unauthorized
+  setAuthenticatedUser(authenticatedUser);
+  console.log(authenticatedUser  +7 );
+  localStorage.setItem("token", authenticatedUser.token);
 
   return res.json(authenticatedUser);
 });

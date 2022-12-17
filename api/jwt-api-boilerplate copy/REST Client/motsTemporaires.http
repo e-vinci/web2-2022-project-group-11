@@ -9,6 +9,7 @@ GET {{baseUrl}}/motsTemporaires/
 ###
 POST {{baseUrl}}/motsTemporaires/
 Content-Type: application/json
+Authorization: {{admin.response.body.token}}
 
 {
     "mot": "fraise",
@@ -16,9 +17,22 @@ Content-Type: application/json
     
 }
 
+### Try to login an unknow user
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"1",
+    "password":"1"
+}
+
+
 ###
+
 PATCH {{baseUrl}}/motsTemporaires/1
 Content-Type: application/json
+Authorization: {{admin.response.body.token}}
 
 {
     "isOk": true

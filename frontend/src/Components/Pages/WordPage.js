@@ -1,4 +1,5 @@
 const isAdmin = false;
+import { getAuthenticatedUser } from '../../utils/auths';
 
 const WordPage = async  () => {
     const main = document.querySelector('main');
@@ -99,6 +100,9 @@ const WordPage = async  () => {
 
         const mot= document.querySelector("#word").value;
         const semblable= document.querySelector("#synonym").value;
+        const authenticatedUser = getAuthenticatedUser()
+        console.log(authenticatedUser);
+
 
         const options = {
             method: 'POST',
@@ -110,6 +114,8 @@ const WordPage = async  () => {
             }),
             headers: {
                 'Content-Type' : 'application/json',
+                Authorization:authenticatedUser.token,
+
 
             },
 
