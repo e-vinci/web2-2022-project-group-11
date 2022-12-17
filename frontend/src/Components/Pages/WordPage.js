@@ -1,5 +1,4 @@
 import { getAuthenticatedUser } from "../../utils/auths";
-
 import {isAdmin} from "./LoginPage";
 const WordPage = async  () => {
     const authenticatedUser= getAuthenticatedUser();
@@ -87,16 +86,14 @@ const WordPage = async  () => {
 
 
     
-
-    
-    //if (!isAdmin){
+    if (!isAdmin){
      motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
      tabMotsTemporaires.innerHTML = motsTemporairesAsHtmlTable;
 
-  // }
-   //else{
-   // motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
-   //}
+  }
+  else{
+      motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
+      }
 
    const nouveauMotBtn= document.querySelector("#word_btn");
     nouveauMotBtn.addEventListener("click", suggererMot);
