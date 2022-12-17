@@ -53,6 +53,7 @@ const WordPage = async  () => {
         }
       
         let htmlMotsTemporairesTable = `<div class="table-responsive p-5">
+        <h1>Mots et synonymes suggérés</h1>
         <table class="table">
       <thead>
         <tr>
@@ -105,6 +106,9 @@ const WordPage = async  () => {
         const authenticatedUser = getAuthenticatedUser();
         if(authenticatedUser===undefined) {
           formMotsTemporaires.innerHTML+= `<p>Vous devez etre connecté pour suggerer un mot.</p> `;
+        }
+        else{
+          formMotsTemporaires.innerHTML+= `<p>Merci de ta participation !</p> `;
         }
         console.log(authenticatedUser);
         const options = {
