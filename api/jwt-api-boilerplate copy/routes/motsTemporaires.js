@@ -43,6 +43,24 @@ router.patch('/:id',(req,res)=> {
 
 });
 
+router.patch('/refuser/:id',(req,res)=> {
+    const allMotsTemp= readAllMotsTemporaires();
+
+    const isOk = req.body.ok;
+    const foundIndex= allMotsTemp.findIndex(mot=> mot.id==req.params.id);
+    if(foundIndex<0) return res.sendStatus(404);
+    
+    const updatedWord = {...allMotsTemp[foundIndex], ...req.body.ok};
+    allMotsTemp[foundIndex]=updatedWord;
+    const mot= updatedWord.mot;
+    const semblable= updatedWord.semblable;
+    
+    deleteOneMotTemporaire(mot);
+    
+    res.json(updatedWord);
+
+});
+
 
 router.get('/ko',(req,res)=> {
     

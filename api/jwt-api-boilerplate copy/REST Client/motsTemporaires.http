@@ -34,3 +34,10 @@ Content-Type: application/json
 {
     "isOk": true
 }
+
+###
+PATCH {{baseUrl}}/motsTemporaires/refuser/5
+Content-Type: application/json
+
+{
+}

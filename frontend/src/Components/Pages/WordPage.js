@@ -144,6 +144,14 @@ const WordPage = async  () => {
         WordPage();
       });
     }); 
+    tabMots.querySelectorAll('.refuser').forEach((button) => {
+      button.addEventListener('click', async (e) => {
+        const { elementId } = e.target.dataset;
+        console.log("clicked");
+        await refuserMot(elementId);
+        WordPage();
+      });
+    }); 
   };
 
   async function validerMot(id){
@@ -162,6 +170,28 @@ const WordPage = async  () => {
     };
 
     const response= await fetch(`/api/motsTemporaires/${id}`,options);
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+    const motValidé = await response.json(); // json() returns a promise => we wait for the data
+
+    console.log(' nouveau mot validé : ', motValidé);
+  };
+
+
+  async function refuserMot(id){
+    if(!id) return undefined;
+   
+    
+    const options = {
+        method: 'PATCH',
+        
+        headers: {
+            'Content-Type' : 'application/json',
+
+        },
+
+    };
+
+    const response= await fetch(`/api/motsTemporaires/refuser/${id}`,options);
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
     const motValidé = await response.json(); // json() returns a promise => we wait for the data
 
