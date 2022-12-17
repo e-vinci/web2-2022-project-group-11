@@ -44,7 +44,12 @@ function getRandomIds(nbrIds, nbrJoueurs){
 
 
 
+
+
 };
+
+    
+
 function getRandomIdsEspions(nbrIdsEspions, nbrJoueurs, idsIncognitos){
     let idsEspions=[];
     while(idsEspions.length!=nbrIdsEspions){

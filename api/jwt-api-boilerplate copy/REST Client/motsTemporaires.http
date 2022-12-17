@@ -28,7 +28,7 @@ Authorization: {{manager.response.body.token}}
 }
 
 ###
-PATCH {{baseUrl}}/motsTemporaires/4
+PATCH {{baseUrl}}/motsTemporaires/11
 Content-Type: application/json
 
 {

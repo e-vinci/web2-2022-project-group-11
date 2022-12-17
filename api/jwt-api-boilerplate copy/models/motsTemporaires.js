@@ -38,6 +38,15 @@ function createOneMotTemporaire(mot,semblable){
 
 }
 
+function deleteOneMotTemporaire(moti){
+    const mots = parse(jsonDbPath,defaultMotsTemporaires);
+    const indexFound= mots.findIndex((mot)=> mot.mot== moti);
+    if(indexFound<0) return undefined;
+    mots.pop(mots[indexFound]);
+    serialize(jsonDbPath,mots);
+
+};
+
 
 function getNextId() {
     const mots = parse(jsonDbPath, defaultMotsTemporaires);
@@ -48,4 +57,4 @@ function getNextId() {
     return nextId;
   }
 
-  module.exports={createOneMotTemporaire, readAllMotsTemporaires,readMotsKo};
+  module.exports={createOneMotTemporaire,deleteOneMotTemporaire, readAllMotsTemporaires,readMotsKo};

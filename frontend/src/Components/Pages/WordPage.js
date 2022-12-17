@@ -74,10 +74,14 @@ const WordPage = async  () => {
           </tr>
           `;
         });
+
+
       
         return htmlMotsTemporairesTable;
       };
 
+
+    
 
     
     //if (!isAdmin){
@@ -124,8 +128,50 @@ const WordPage = async  () => {
         const newMot = await response.json(); // json() returns a promise => we wait for the data
 
         console.log(' nouveau mot suggeré : ', newMot);
-    };   
+    }; 
+    
+    
+    attachEventListeners();
+  };  
+  function attachEventListeners() {
+    const tabMots = document.querySelector('#tabMotsTemporaires');
+  
+    tabMots.querySelectorAll('.accepter').forEach((button) => {
+      button.addEventListener('click', async (e) => {
+        const { elementId } = e.target.dataset;
+        console.log("clicked");
+        await validerMot(elementId);
+        WordPage();
+      });
+    }); 
+  };
+
+  async function validerMot(id){
+    if(!id) return undefined;
+   
+    const authenticatedUser = getAuthenticatedUser();
+    
+    const options = {
+        method: 'PATCH',
+        
+        headers: {
+            'Content-Type' : 'application/json',
+
+        },
+
     };
+
+    const response= await fetch(`/api/motsTemporaires/${id}`,options);
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+    const motValidé = await response.json(); // json() returns a promise => we wait for the data
+
+    console.log(' nouveau mot validé : ', motValidé);
+  };
+
+    
+    
+
+
     
   
   export default WordPage;

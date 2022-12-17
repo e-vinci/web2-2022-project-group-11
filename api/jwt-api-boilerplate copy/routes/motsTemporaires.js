@@ -2,7 +2,7 @@ const express= require('express');
 const { createOneMot } = require('../models/mot');
 const {authorize} = require('../utils/auths');
 
-const { createOneMotTemporaire , readAllMotsTemporaires, readMotsKo} = require('../models/motsTemporaires');
+const { createOneMotTemporaire , readAllMotsTemporaires, readMotsKo, deleteOneMotTemporaire} = require('../models/motsTemporaires');
 
 
 const router= express.Router();
@@ -31,12 +31,13 @@ router.patch('/:id',(req,res)=> {
     const foundIndex= allMotsTemp.findIndex(mot=> mot.id==req.params.id);
     if(foundIndex<0) return res.sendStatus(404);
     
-    const updatedWord = {...allMotsTemp[foundIndex], ...req.body};
+    const updatedWord = {...allMotsTemp[foundIndex], ...req.body.ok};
     allMotsTemp[foundIndex]=updatedWord;
     const mot= updatedWord.mot;
     const semblable= updatedWord.semblable;
     createOneMot(mot,semblable);
     createOneMot(semblable, mot);
+    deleteOneMotTemporaire(mot);
     
     res.json(updatedWord);
 
