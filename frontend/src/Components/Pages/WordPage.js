@@ -1,10 +1,6 @@
 import { getAuthenticatedUser } from "../../utils/auths";
 import {isAdmin} from "./LoginPage";
 const WordPage = async  () => {
-    const authenticatedUser= getAuthenticatedUser();
-    console.log(authenticatedUser);
-    console.log(authenticatedUser.isAdmin);
-
     const main = document.querySelector('main');
     main.innerHTML = '<div id="motsTemporairesWrapper"></div><div id="tabMotsTemporaires"></div>';
     const motsTemporairesWrapper = document.querySelector('#motsTemporairesWrapper');
@@ -86,7 +82,7 @@ const WordPage = async  () => {
 
 
     
-    if (!isAdmin){
+  if (!isAdmin){
      motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
      tabMotsTemporaires.innerHTML = motsTemporairesAsHtmlTable;
 
