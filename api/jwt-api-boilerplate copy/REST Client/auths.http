@@ -26,8 +26,8 @@ Content-Type: application/json
 
 {
     "email": "sdvsd",
-    "username":"2",
-    "password":"manager"
+    "username":"a",
+    "password":"a"
 }
 
 ### Login the manager user

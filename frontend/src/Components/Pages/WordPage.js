@@ -128,6 +128,8 @@ const WordPage = async  () => {
         const newMot = await response.json(); // json() returns a promise => we wait for the data
 
         console.log(' nouveau mot suggeré : ', newMot);
+        WordPage();
+
     }; 
     
     
@@ -164,6 +166,7 @@ const WordPage = async  () => {
         
         headers: {
             'Content-Type' : 'application/json',
+            Authorization: authenticatedUser.token,
 
         },
 
@@ -180,12 +183,15 @@ const WordPage = async  () => {
   async function refuserMot(id){
     if(!id) return undefined;
    
-    
+    const authenticatedUser = getAuthenticatedUser();
+
     const options = {
         method: 'PATCH',
         
         headers: {
             'Content-Type' : 'application/json',
+            Authorization: authenticatedUser.token,
+
 
         },
 

@@ -12,8 +12,8 @@ POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"1",
-    "password":"1"
+    "username":"a",
+    "password":"a"
 }
 
 ###
@@ -28,8 +28,10 @@ Authorization: {{manager.response.body.token}}
 }
 
 ###
-PATCH {{baseUrl}}/motsTemporaires/11
+PATCH {{baseUrl}}/motsTemporaires/2
 Content-Type: application/json
+Authorization: {{manager.response.body.token}}
+
 
 {
     "isOk": true

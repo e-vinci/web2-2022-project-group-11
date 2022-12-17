@@ -1,6 +1,6 @@
 const express= require('express');
 const { createOneMot } = require('../models/mot');
-const {authorize} = require('../utils/auths');
+const {authorize, isAdmin} = require('../utils/auths');
 
 const { createOneMotTemporaire , readAllMotsTemporaires, readMotsKo, deleteOneMotTemporaire} = require('../models/motsTemporaires');
 
@@ -24,7 +24,7 @@ router.post('/', authorize, (req,res)=> {
 
 });
 
-router.patch('/:id',(req,res)=> {
+router.patch('/:id',authorize, isAdmin, (req,res)=> {
     const allMotsTemp= readAllMotsTemporaires();
 
     const isOk = req.body.ok;
@@ -43,7 +43,7 @@ router.patch('/:id',(req,res)=> {
 
 });
 
-router.patch('/refuser/:id',(req,res)=> {
+router.patch('/refuser/:id',authorize, isAdmin,(req,res)=> {
     const allMotsTemp= readAllMotsTemporaires();
 
     const isOk = req.body.ok;
