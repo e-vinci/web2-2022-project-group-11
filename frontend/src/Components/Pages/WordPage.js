@@ -102,6 +102,9 @@ const WordPage = async  () => {
         if(authenticatedUser===undefined) {
           formMotsTemporaires.innerHTML+= `<p>Vous devez etre connecté pour suggerer un mot.</p> `;
         }
+        else{
+          formMotsTemporaires.innerHTML+= `<p>Merci de ta participation !</p> `;
+        }
         console.log(authenticatedUser);
         const options = {
             method: 'POST',
