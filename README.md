@@ -1,5 +1,5 @@
 # Projet Web2 2022
-## Introduction
+## intro
 - Ce boilerplate vous offre l'architecture de base de votre frontend et de votre API pour développer un projet qui vous tient à coeur et qui répond aux exigences résumées ci-dessous (et détaillées dans le template du rapport de projet). 
 - Vous pouvez mettre à jour le boilerplate autant que nécessaire, installer des packages...
 - Votre web repository sur GitHub doit être public.
