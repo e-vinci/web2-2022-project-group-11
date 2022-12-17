@@ -1,13 +1,15 @@
 import { setAuthenticatedUser } from "../../utils/auths";
-
+import Navigate from "../Router/Navigate";
 
 const RegisterPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
-    <div class="wrapper-box">
-    <div class="wrapper">
+    <div class="wrapper-box" >
+    <div class="wrapper" id= "formRegister">
     <h1>Inscription</h1>
     <form method="post" action="" id="register">
+    
+
         <div class="input-box">
             <label>Email </label>
             <input type="email" name="email" id="email" placeholder="Entrez un e-mail">
@@ -27,6 +29,7 @@ const RegisterPage = () => {
     </div>
     </div>
     `;
+    const formRegister= document.querySelector("#formRegister");
 
     const registerBtn = document.querySelector("#register_btn");
     registerBtn.addEventListener("click", register);
@@ -54,11 +57,19 @@ const RegisterPage = () => {
         };
 
         const response= await fetch('/api/auths/register',options);
+
+        if(response.status==409)  {
+            console.log("ko");
+            
+            formRegister.innerHTML+= `<p>Cet username existe déja ! </p> `;
+        }
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
         const newUser = await response.json(); // json() returns a promise => we wait for the data
+        
 
         console.log('New user added : ', newUser);
+        Navigate('/login');
     };
 };
 

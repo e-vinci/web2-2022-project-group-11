@@ -42,40 +42,6 @@ const LoginPage = () => {
     loginBtn.addEventListener("click", login);
    
    
-   async function register(e){
-    console.log("hok");
-    
-        e.preventDefault();
-
-        const email= document.querySelector("#email").value;
-        const username= document.querySelector("#username").value;
-        const password= document.querySelector("#password").value;
-
-
-        const options = {
-            method: 'POST',
-            body: JSON.stringify({
-                email,
-                username,
-                password,
-
-            }),
-            headers: {
-                'Content-Type' : 'application/json',
-
-            },
-
-        };
-
-        const response= await fetch('/api/auths/register',options);
-        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-        const authenticatedUser = await response.json(); // json() returns a promise => we wait for the data
-
-        console.log('New user added : ', newUser);
-        setAuthenticatedUser(authenticatedUser);
-    };
-
 
 
     async function login(e){
@@ -107,6 +73,7 @@ const LoginPage = () => {
 
         console.log('New logged user : ', authenticatedUser);
         setAuthenticatedUser(authenticatedUser);
+        Navigate('/');
 
     };
 
