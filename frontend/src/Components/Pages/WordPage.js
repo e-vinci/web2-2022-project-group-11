@@ -53,6 +53,7 @@ const WordPage = async  () => {
         }
       
         let htmlMotsTemporairesTable = `<div class="table-responsive p-5">
+        <h1>Mots et synonymes suggérés</h1>
         <table class="table">
       <thead>
         <tr>
