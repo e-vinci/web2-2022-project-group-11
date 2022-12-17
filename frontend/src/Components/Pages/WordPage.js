@@ -25,6 +25,7 @@ const WordPage = async  () => {
         </div>
         </div>
 `;
+
     const readAllMotsTemporaires = async () => {
     try {
       const response = await fetch('/api/motsTemporaires');
@@ -40,7 +41,9 @@ const WordPage = async  () => {
     }
     };
 
-    const words = await readAllMotsTemporaires;
+    const words = await readAllMotsTemporaires();
+    console.log(words);
+
     const motsTemporairesAsHtmlTable = getHtmlMotsTemporairesTableAsString(words);
 
     function getHtmlMotsTemporairesTableAsString(words) {
@@ -74,6 +77,8 @@ const WordPage = async  () => {
       
         return htmlMotsTemporairesTable;
       };
+
+
     
     //if (!isAdmin){
      motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
@@ -94,6 +99,9 @@ const WordPage = async  () => {
         const mot= document.querySelector("#word").value;
         const semblable= document.querySelector("#synonym").value;
         const authenticatedUser = getAuthenticatedUser();
+        if(authenticatedUser===undefined) {
+          formMotsTemporaires.innerHTML+= `<p>Vous devez etre connecté pour suggerer un mot.</p> `;
+        }
         console.log(authenticatedUser);
         const options = {
             method: 'POST',
@@ -112,12 +120,12 @@ const WordPage = async  () => {
         };
 
         const response= await fetch('/api/motsTemporaires',options);
-        if(response.status===401) formMotsTemporaires.innerHTML+= `<p>Vous devez etre connecté pour suggerer un mot.</p> `;
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
         const newMot = await response.json(); // json() returns a promise => we wait for the data
 
         console.log(' nouveau mot suggeré : ', newMot);
     };   
     };
+    
   
   export default WordPage;
