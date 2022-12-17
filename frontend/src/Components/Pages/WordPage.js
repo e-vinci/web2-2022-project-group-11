@@ -5,10 +5,9 @@ const WordPage = async  () => {
     const motsTemporairesWrapper = document.querySelector('#motsTemporairesWrapper');
     const tabMotsTemporaires = document.querySelector('#tabMotsTemporaires');
     const motsTemporairesDefaultHTML =      ` 
-    <p class="ranking">Vous devez etre connecté pour ajouter un mot</p>
     <div class="wrapper-box">
         <div class="curved" id="curved"></div>
-        <div class="wrapper">
+        <div class="wrapper" id ="formMotsTemporaires">
         <h1>Suggerez un mot et son synonyme</h1>
             <div class="input-box"> 
                 <input type="text" name="word" placeholder="Mot" id= "word">
@@ -38,11 +37,10 @@ const WordPage = async  () => {
       throw err;
     }
     };
+
     const mots = await readAllMotsTemporaires;
-      
     const motsTemporairesAsHtmlTable = getHtmlMotsTemporairesTableAsString(mots);
 
-      
     function getHtmlMotsTemporairesTableAsString(words) {
         console.log("coucou");
         if (words?.length === undefined || words.length === 0) {
@@ -75,16 +73,14 @@ const WordPage = async  () => {
         return htmlMotsTemporairesTable;
       };
     
-    
-
-    if (isAdmin){
+    //if (!isAdmin){
      motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
      tabMotsTemporaires.innerHTML = motsTemporairesAsHtmlTable;
 
-   }
-   else{
-    motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
-   }
+  // }
+   //else{
+   // motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
+   //}
 
    const nouveauMotBtn= document.querySelector("#word_btn");
     nouveauMotBtn.addEventListener("click", suggererMot);
@@ -112,7 +108,7 @@ const WordPage = async  () => {
         };
 
         const response= await fetch('/api/motsTemporaires',options);
-        if(response.status===401) main.innerHTML+= `<p> vous devez etre connecté pour suggerer un mot.</p> `;
+        if(response.status===401) formMotsTemporaires.innerHTML+= `<p>Vous devez etre connecté pour suggerer un mot.</p> `;
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
         const newMot = await response.json(); // json() returns a promise => we wait for the data
 
