@@ -23,13 +23,11 @@ Content-Type: application/json
 ###
 POST {{baseUrl}}/parties/
 Content-Type: application/json
-Authorization: {{admin.response.body.token}}
 
 
 {
-    "nombreJoueurs":9,
-    "nombreIncognitos":1,
-    "nombreMrXX":3,
-    "idMembre":1
+    "nombreJoueurs":3,
+    "nombreIncognitos":0,
+    "nombreMrXX":1
 
 }

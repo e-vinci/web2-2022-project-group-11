@@ -69,7 +69,7 @@ const PartyPage =async () => {
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
     
         const idMot= newPartie.idMot;
-         localStorage.setItem("idMot", idMot);
+        localStorage.setItem("idMot", idMot);
 
 
     
