@@ -46,8 +46,8 @@ const PartyPage =async () => {
     const nombreIncognitos= localStorage.getItem("nbrIncognitos");
     clearPage();
 
-    createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX);
-    async function createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX){
+
+    
 
         const options = {
             method: 'POST',
@@ -59,20 +59,20 @@ const PartyPage =async () => {
             }),
             headers: {
                 'Content-Type' : 'application/json',
-
+    
             },
-
+    
         };
-
+    
         const response= await fetch(`${process.env.API_BASE_URL}/parties`,options);
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
+            
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
-    
+        console.log("nouvelle partie creee" + newPartie.idMot);
         const idMot= newPartie.idMot;
         localStorage.setItem("idMot", idMot);
-
-
+    
+    
     
     
     
@@ -101,9 +101,14 @@ const PartyPage =async () => {
     
           console.log(semblable);
     
+          let mot2 = localStorage.getItem("mot");
+        //let semblable2 = localStorage.getItem("semblable");
+        console.log(mot2 + "111");
+    
         
        
-    };
+    
+    
 
    
 
@@ -151,8 +156,7 @@ const PartyPage =async () => {
         </div>
     `;
 
-    let mot2 = localStorage.getItem("mot");
-    let semblable2 = localStorage.getItem("semblable");
+    
 
     // let idPerso = 1;
     let idCard = 0;
@@ -834,6 +838,10 @@ const PartyPage =async () => {
     };
 
 };
+
+
+
+
 
 
 export default PartyPage;
