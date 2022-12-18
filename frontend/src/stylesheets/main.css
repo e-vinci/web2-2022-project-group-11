@@ -626,10 +626,12 @@ nav ul img:hover {
 }
 
 .character {
+    margin-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .chara-avat {
     width: 200px;
@@ -712,7 +714,56 @@ nav ul img:hover {
     border: 3px solid rgb(255, 255, 255);
 }
 
+.role-card {
+    position: absolute;
+    z-index: 10000;
+    width: 30%;
+    height: 500px;
+    border-radius: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.87);
+    border: 3px solid rgb(255, 255, 255);
+}
+
+.role-card h1 {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(66, 234, 158);
+    margin-top: 70px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.role-card h4 {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.499);
+    margin-bottom: 30px;
+    letter-spacing: 1.5px;
+}
+
+.role-card h5 {
+    color: rgb(107, 238, 179);
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 27px;
+    width: 90%;
+    height: 200px;
+    border-radius: 10px;
+    margin-left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.426);
+    margin-bottom: 60px;
+    box-shadow: rgba(149, 157, 165, 0.071) 0px 8px 24px;
+}
+
 .mrxx-card h1 {
+    font-size: 25px;
+    font-weight: 700;
+    user-select: none;
+    cursor: default;
     margin-top: 30px;
     font-size: 25px;
     color: rgb(100, 100, 100);
@@ -752,7 +803,7 @@ nav ul img:hover {
     font-size: 15px;
     margin-top: 10px;
     color: rgb(245, 192, 87);
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 .mrxx-card h2 {
@@ -1092,6 +1143,7 @@ nav ul img:hover {
     width: 100px;
     border: 1px solid white;
     border-radius: 20px;
+    margin-left: -47px;
 }
 
 .elimine p {

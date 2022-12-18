@@ -1,8 +1,9 @@
 import Navigate from "../Router/Navigate";
+// eslint-disable-next-line import/newline-after-import
 import down from '../../img/down.png';
 import { setAuthenticatedUser } from "../../utils/auths";
 import Navbar from "../Navbar/Navbar";
-//import {Logout} from "../Logout/Logout" 
+
 
 const LoginPage = () => {
    // Logout();
