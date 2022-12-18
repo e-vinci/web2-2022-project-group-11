@@ -9,7 +9,6 @@ const HomePage = async () => {
     <p><span>"INCO</span><span>GNITO"</span></p>
     <img id="topage" data-uri="/intro" src="${play}">
   </div>
-  
   `;
   try {
 
