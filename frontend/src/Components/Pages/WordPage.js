@@ -21,8 +21,8 @@ const WordPage = async  () => {
     const tabMotsTemporaires = document.querySelector('#tabMotsTemporaires');
     const motsTemporairesDefaultHTML =      ` 
     <div class="wrapper-box">
+
         <div class="wrapper" id ="formMotsTemporaires">
-        <div class="curved" id="curved"></div>
 
         <h1>Suggerez un mot et son synonyme</h1>
             <div class="input-box"> 

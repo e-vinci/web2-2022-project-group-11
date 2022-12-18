@@ -11,6 +11,7 @@ import spy from "../../img/incognito.png";
 import who from "../../img/who.png";
 import civil from "../../img/civil.png";
 import trophee from "../../img/coupe.png";
+import spirale from "../../img/spirale2.png";
 
 import perso1 from "../../img/avatar/1.png";
 import perso2 from "../../img/avatar/2.png";
@@ -283,7 +284,7 @@ const PartyPage =async () => {
                         <img class="chara-avat" src="${tableauPerso[randomPerso]}">
                     </div>
                     <input class="ajouter-input" type="text" placeholder="Choisis un nom" name="nom" autocomplete="off">
-                    <h3>Saisis ton nom pour dévoiler ton mot secret</h3>
+                    <h3 class="alrt">Saisis ton nom pour dévoiler ton mot secret</h3>
                     <p class="ajouter-ok" id="ajouter-perso">Lis ton mot secret</p>
                 </div>
             </div>
@@ -303,9 +304,13 @@ const PartyPage =async () => {
             carteSelectionnée.classList.add("jeu");
             carteSelectionnée.classList.add("vie");
             input = document.querySelector(".ajouter-input").value;
+            document.querySelector(".ajouter-input").style.animation = "";
 
             if(input === '') {
-                window.alert("Veillez rentrer votre nom");
+                document.querySelector(".alrt").style.color = "red";
+                document.querySelector(".alrt").textContent = "N'oublie pas de rentrer ton nom";
+                document.querySelector(".ajouter-input").style.animation = "alert 0.3s";
+                document.querySelector(".ajouter-input").style.border = "2px solid red";
             } else {
                 carteSelectionnée.innerHTML = `
                 <img class="avat" src="${tableauPerso[randomPerso]}">
@@ -315,8 +320,10 @@ const PartyPage =async () => {
                 `;
 
                 popUp.innerHTML = ``;
+                
                 trouverRole(idCard);
             }
+            
 
         });
     };
@@ -654,8 +661,8 @@ const PartyPage =async () => {
                 <div class="mrxx-card">
                     <h1>Mr.Xx a<br>été démasqué</h1>
                     <img src="${mrxx}">
-                    <input id="valider-input" type="text" placeholder="Deviner ?" name="deviner">
-                    <h2>${nomJoueur}, devine le mot des civils pour gagner !</h2>
+                    <input id="valider-input" type="text" placeholder="Deviner ?" name="deviner" autocomplete="off">
+                    <h2 class="alrt">${nomJoueur}, devine le mot des civils pour gagner !</h2>
                     <p class="action-ok" id="valider-but">Valider</p>
                 </div>
             </div>
@@ -672,7 +679,10 @@ const PartyPage =async () => {
         validerBut.addEventListener('click', () => {
             input = document.querySelector("#valider-input").value;
             if(input==='') {
-                window.alert("Ecrivez un mot");
+                document.querySelector(".alrt").style.color = "red";
+                document.querySelector(".alrt").textContent = "Tu dois rentrer un mot";
+                document.querySelector("#valider-input").style.animation = "alert 0.3s";
+                document.querySelector("#valider-input").style.border = "2px solid red";
             } else {
                 popUp.innerHTML = ``;
                 if(mot.toLowerCase() === input.toLowerCase()) {
@@ -730,6 +740,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${spy}">
                         <h3>L'Incognito a gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
         } else {
@@ -740,6 +751,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${spy}">
                         <h3>Les Incognitos ont gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
         }
@@ -757,6 +769,7 @@ const PartyPage =async () => {
                     <img class="mrxx-win" src="${civil}">
                     <h3>Les Civils ont gagné</h3>
                 </div>
+                <img class="spirale" src="${spirale}">
             </div>
         `;
 
@@ -771,6 +784,7 @@ const PartyPage =async () => {
                     <img class="mrxx-win" src="${mrxx}">
                     <h3>Les Infiltrés ont gagné</h3>
                 </div>
+                <img class="spirale" src="${spirale}">
             </div>
         `;
         popUp.innerHTML = pop;
@@ -789,6 +803,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${mrxx}">
                         <h3>Le Mister.Xx a gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
         } else {
@@ -799,6 +814,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${mrxx}">
                         <h3>Les Mister.Xx ont gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
             
