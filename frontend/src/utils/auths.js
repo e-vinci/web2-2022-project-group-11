@@ -44,7 +44,7 @@ function setRememberMe(remembered) {
   const rememberedSerialized = JSON.stringify(remembered);
   localStorage.setItem(REMEMBER_ME, rememberedSerialized);
 }
-//reglage pb
+// reglage pb
 export {
   getAuthenticatedUser,
   setAuthenticatedUser,
