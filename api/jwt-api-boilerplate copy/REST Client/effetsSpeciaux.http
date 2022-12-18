@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:3000
+
+
+
+###
+GET {{baseUrl}}/effets/
+
+
+###
+POST {{baseUrl}}/effets/
+Content-Type: application/json
+
+{
+    "nom": "mage",
+    "description": "il a de la magie"
+}

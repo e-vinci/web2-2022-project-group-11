@@ -1,6 +1,12 @@
+/* eslint-disable eqeqeq */
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
-
+import rules from '../../img/rules.png';
+import inco from '../../img/incognito.png';
+import idea from '../../img/idea.png';
+import login from '../../img/log-in.png';
+import { getAuthenticatedUser } from '../../utils/auths';
+import logout from '../../img/log-out.png';
 /**
  * Render the Navbar which is styled by using Bootstrap
  * Each item in the Navbar is tightly coupled with the Router configuration :
@@ -10,38 +16,35 @@ import { Navbar as BootstrapNavbar } from 'bootstrap';
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
-  const navbar = `
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Add your brand here</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#" data-uri="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/game">Game</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/new">New Page</a>
-              </li>                        
-            </ul>
-          </div>
-        </div>
-      </nav>
-  `;
+  let navbar= ``;
+  if(getAuthenticatedUser()==undefined){
+     navbar = `
+    <nav>
+      <ul>
+        <img class="nav-link" data-uri="/rules" src="${rules}" alt="rules icon">
+        <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
+        <img class="nav-link" data-uri="/word" src="${idea}" alt="trophee icon">
+      </ul>
+      <img id="log" class="nav-link" data-uri="/login" src="${login}" alt="login icon">
+    </nav>
+    `;
+  }else{
+
+     navbar = `
+    <nav>
+      <ul>
+        <img class="nav-link" data-uri="/rules" src="${rules}" alt="rules icon">
+        <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
+        <img class="nav-link" data-uri="/word" src="${idea}" alt="trophee icon">
+      </ul>
+      <img id="log" class="nav-link" data-uri="/logout" src="${logout}" alt="login icon">
+    </nav>
+    `;
+  }
+  
+  
   navbarWrapper.innerHTML = navbar;
+ 
 };
 
 export default Navbar;

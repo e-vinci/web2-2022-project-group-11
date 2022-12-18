@@ -1,0 +1,33 @@
+
+@baseUrl= http://localhost:3000
+
+### read all parties
+GET {{baseUrl}}/parties/
+
+###
+GET {{baseUrl}}/parties/1
+
+
+
+### Create a pizza by using the admin account
+#### First login as the admin
+##### Define a request variable nammed admin :
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+### create a new partie
+POST {{baseUrl}}/parties/
+Content-Type: application/json
+
+
+{
+    "nombreJoueurs":3,
+    "nombreIncognitos":0,
+    "nombreMrXX":1
+
+}

@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:3000
+
+
+
+### read all mots temporaires
+GET {{baseUrl}}/motsTemporaires/
+
+
+### Login the default admin
+# @name manager
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"1",
+    "password":"1"
+}
+
+### create a new mot  temporaire
+POST {{baseUrl}}/motsTemporaires/
+Content-Type: application/json
+Authorization: {{manager.response.body.token}}
+
+{
+    "mot": "libellule",
+    "semblable": "insecte"
+    
+}
+
+### validate a mot temporaire
+PATCH {{baseUrl}}/motsTemporaires/1
+Content-Type: application/json
+Authorization: {{manager.response.body.token}}
+
+
+{
+    "isOk": true
+}
+
+### refuser un mot temporaire
+PATCH {{baseUrl}}/motsTemporaires/refuser/
+Content-Type: application/json
+
+{
+}
