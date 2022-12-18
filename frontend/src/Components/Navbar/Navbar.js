@@ -4,7 +4,8 @@ import rules from '../../img/rules.png';
 import inco from '../../img/spy.png';
 import idea from '../../img/idea.png';
 import login from '../../img/log-in.png';
-//import { getAuthenticatedUser } from '../../utils/auths';
+import { getAuthenticatedUser } from '../../utils/auths';
+import logout from '../../img/log-out.png';
 /**
  * Render the Navbar which is styled by using Bootstrap
  * Each item in the Navbar is tightly coupled with the Router configuration :
@@ -14,16 +15,32 @@ import login from '../../img/log-in.png';
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
-  const navbar = `
-  <nav>
-    <ul>
-      <img class="nav-link" data-uri="/rules" src="${rules}" alt="rules icon">
-      <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
-      <img class="nav-link" data-uri="/word" src="${idea}" alt="trophee icon">
-    </ul>
-    <img id="log" class="nav-link" data-uri="/login" src="${login}" alt="login icon">
-  </nav>
-  `;
+  let navbar= ``;
+  if(getAuthenticatedUser()==undefined){
+     navbar = `
+    <nav>
+      <ul>
+        <img class="nav-link" data-uri="/rules" src="${rules}" alt="rules icon">
+        <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
+        <img class="nav-link" data-uri="/word" src="${idea}" alt="trophee icon">
+      </ul>
+      <img id="log" class="nav-link" data-uri="/login" src="${login}" alt="login icon">
+    </nav>
+    `;
+  }else{
+
+     navbar = `
+    <nav>
+      <ul>
+        <img class="nav-link" data-uri="/rules" src="${rules}" alt="rules icon">
+        <img class="nav-link center" data-uri="/" src="${inco}" alt="home icon">
+        <img class="nav-link" data-uri="/word" src="${idea}" alt="trophee icon">
+      </ul>
+      <img id="log" class="nav-link" data-uri="/logout" src="${logout}" alt="login icon">
+    </nav>
+    `;
+  }
+  
   
   navbarWrapper.innerHTML = navbar;
  

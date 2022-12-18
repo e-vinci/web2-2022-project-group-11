@@ -1,6 +1,7 @@
 import Navigate from "../Router/Navigate";
 import down from '../../img/down.png';
 import { setAuthenticatedUser } from "../../utils/auths";
+import Navbar from "../Navbar/Navbar";
 //import {Logout} from "../Logout/Logout" 
 
 const LoginPage = () => {
@@ -76,7 +77,9 @@ const LoginPage = () => {
         console.log('New logged user : ', authenticatedUser);
         setAuthenticatedUser(authenticatedUser);
         const isAdmin= authenticatedUser.isAdmin;
+        Navbar();
         Navigate('/');
+        
 
     };
 
