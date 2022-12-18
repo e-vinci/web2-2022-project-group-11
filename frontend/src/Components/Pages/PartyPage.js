@@ -71,11 +71,6 @@ const PartyPage =async () => {
     
         const idMot= newPartie.idMot;
         localStorage.setItem("idMot", idMot);
-
-
-    
-    
-    
         
         try {
     
@@ -83,7 +78,7 @@ const PartyPage =async () => {
                 if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
               const leMot = await response.json();
           
-              console.log(leMot);
+
               localStorage.setItem("mot", leMot.mot);
               localStorage.setItem("semblable", leMot.semblable);
     
@@ -95,13 +90,9 @@ const PartyPage =async () => {
     
           const mot = localStorage.getItem("mot");
           
-          console.log(mot);
     
           const semblable= localStorage.getItem("semblable");
-    
-          console.log(semblable);
-    
-        
+     
        
     };
 
@@ -153,7 +144,6 @@ const PartyPage =async () => {
 
     let mot2 = localStorage.getItem("mot");
     let semblable2 = localStorage.getItem("semblable");
-    console.log(mot2 + "111");
 
     // let idPerso = 1;
     let idCard = 0;
@@ -816,6 +806,7 @@ const PartyPage =async () => {
                 premier = tabCivil[i].id;
             }
         }
+
 
         document.getElementById(premier).lastElementChild.innerHTML = `
             <div class="passage uno">
