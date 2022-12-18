@@ -23,6 +23,7 @@ const RegisterPage = () => {
             <label>Mot de passe </label>
             <input type="password" name="password" placeholder="Entrez un mot de passe"id="password"/>
         </div>
+        <p> En vous inscrivant vous acceptez nos <a href="/gdpr">conditions</a>
         <div>         
         <button id="register_btn" type="">S'inscrire</button>
         </div>

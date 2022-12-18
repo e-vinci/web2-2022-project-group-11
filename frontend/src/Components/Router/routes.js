@@ -8,7 +8,7 @@ import RegisterPage from '../Pages/RegisterPage';
 import IntroPage from '../Pages/IntroPage';
 import PartyPage from '../Pages/PartyPage';
 import Logout from '../Logout/Logout';
-
+import GDPR from '../Pages/GDPRPage';
 
 const routes = {
   '/': HomePage,
@@ -20,6 +20,7 @@ const routes = {
   '/party': PartyPage,
   '/new': NewPage,
   '/logout': Logout,
+  '/gdpr' : GDPR,
 
 };
 
