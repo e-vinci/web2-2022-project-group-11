@@ -2,7 +2,7 @@
 
 
 
-###
+### read all mots
 GET {{baseUrl}}/mots/
 
 ###
@@ -10,10 +10,10 @@ GET {{baseUrl}}/mots/1
 
 
 
-###
+### read a random mot
 GET {{baseUrl}}/mots/random
-#hello
-###
+
+### Create a new mot
 POST {{baseUrl}}/mots/
 Content-Type: application/json
 
