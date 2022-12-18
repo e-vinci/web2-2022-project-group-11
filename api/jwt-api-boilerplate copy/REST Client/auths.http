@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 
-### Create the manager user
+### Create ar user
 POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
@@ -39,6 +39,6 @@ Content-Type: application/json
     "password":"manager"
 }
 
-###
+### read all users
 GET {{baseUrl}}/users/
 

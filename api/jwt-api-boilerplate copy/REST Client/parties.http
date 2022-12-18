@@ -1,7 +1,7 @@
 
 @baseUrl= http://localhost:3000
 
-###
+### read all parties
 GET {{baseUrl}}/parties/
 
 ###
@@ -20,7 +20,7 @@ Content-Type: application/json
     "username":"admin",
     "password":"admin"
 }
-###
+### create a new partie
 POST {{baseUrl}}/parties/
 Content-Type: application/json
 

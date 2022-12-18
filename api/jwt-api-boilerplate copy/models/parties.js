@@ -5,6 +5,8 @@ const { parse, serialize } = require('../utils/json');
 const jsonDbPath = path.join(__dirname, '/../data/parties.json');
 const defaultParties=[];
 
+
+
 function readAllParties(){
     const parties= parse(jsonDbPath,defaultParties);
     return parties;

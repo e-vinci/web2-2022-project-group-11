@@ -2,7 +2,7 @@
 
 
 
-###
+### read all mots temporaires
 GET {{baseUrl}}/motsTemporaires/
 
 
@@ -16,7 +16,7 @@ Content-Type: application/json
     "password":"1"
 }
 
-###
+### create a new mot  temporaire
 POST {{baseUrl}}/motsTemporaires/
 Content-Type: application/json
 Authorization: {{manager.response.body.token}}
@@ -27,7 +27,7 @@ Authorization: {{manager.response.body.token}}
     
 }
 
-###
+### validate a mot temporaire
 PATCH {{baseUrl}}/motsTemporaires/1
 Content-Type: application/json
 Authorization: {{manager.response.body.token}}
@@ -37,7 +37,7 @@ Authorization: {{manager.response.body.token}}
     "isOk": true
 }
 
-###
+### refuser un mot temporaire
 PATCH {{baseUrl}}/motsTemporaires/refuser/
 Content-Type: application/json
 
