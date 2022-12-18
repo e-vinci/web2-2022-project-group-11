@@ -11,6 +11,7 @@ import spy from "../../img/incognito.png";
 import who from "../../img/who.png";
 import civil from "../../img/civil.png";
 import trophee from "../../img/coupe.png";
+import spirale from "../../img/spirale2.png";
 
 import perso1 from "../../img/avatar/1.png";
 import perso2 from "../../img/avatar/2.png";
@@ -63,7 +64,7 @@ const PartyPage =async () => {
 
         };
 
-        const response= await fetch('/api/parties',options);
+        const response= await fetch(`${process.env.API_BASE_URL}/parties`,options);
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
@@ -78,7 +79,7 @@ const PartyPage =async () => {
         
         try {
     
-            const response= await fetch(`/api/mots/${idMot}`)
+            const response= await fetch(`${process.env.API_BASE_URL}/mots/${idMot}`)
                 if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
               const leMot = await response.json();
           
@@ -92,7 +93,7 @@ const PartyPage =async () => {
             console.error('HomePage::error: ', err);
           };
     
-          const mot= localStorage.getItem("mot");
+          const mot = localStorage.getItem("mot");
           
           console.log(mot);
     
@@ -149,6 +150,9 @@ const PartyPage =async () => {
 
         </div>
     `;
+
+    let mot2 = localStorage.getItem("mot");
+    let semblable2 = localStorage.getItem("semblable");
 
     // let idPerso = 1;
     let idCard = 0;
@@ -249,7 +253,7 @@ const PartyPage =async () => {
                         <img class="chara-avat" src="${tableauPerso[randomPerso]}">
                     </div>
                     <input class="ajouter-input" type="text" placeholder="Choisis un nom" name="nom" autocomplete="off">
-                    <h3>Saisis ton nom pour dévoiler ton mot secret</h3>
+                    <h3 class="alrt">Saisis ton nom pour dévoiler ton mot secret</h3>
                     <p class="ajouter-ok" id="ajouter-perso">Lis ton mot secret</p>
                 </div>
             </div>
@@ -269,9 +273,13 @@ const PartyPage =async () => {
             carteSelectionnée.classList.add("jeu");
             carteSelectionnée.classList.add("vie");
             input = document.querySelector(".ajouter-input").value;
+            document.querySelector(".ajouter-input").style.animation = "";
 
             if(input === '') {
-                window.alert("Veillez rentrer votre nom");
+                document.querySelector(".alrt").style.color = "red";
+                document.querySelector(".alrt").textContent = "N'oublie pas de rentrer ton nom";
+                document.querySelector(".ajouter-input").style.animation = "alert 0.3s";
+                document.querySelector(".ajouter-input").style.border = "2px solid red";
             } else {
                 carteSelectionnée.innerHTML = `
                 <img class="avat" src="${tableauPerso[randomPerso]}">
@@ -281,8 +289,10 @@ const PartyPage =async () => {
                 `;
 
                 popUp.innerHTML = ``;
+                
                 trouverRole(idCard);
             }
+            
 
         });
     };
@@ -377,9 +387,6 @@ const PartyPage =async () => {
         }
 
         let pop = ``;
-        let mot = localStorage.getItem("mot");
-        let semblable= localStorage.getItem("semblable");
-        console.log("la "+ mot);
 
         if(role === 'Civil') {
             pop = ` 
@@ -387,7 +394,7 @@ const PartyPage =async () => {
                     <div class="role-card">
                         <h1>${input}</h1>
                         <h4>Ton mot secret est</h4>
-                        <h5>${mot}</h5>
+                        <h5>${mot2}</h5>
                         <p class="action-ok">Suivant</p>
                     </div>
                 </div>
@@ -398,7 +405,7 @@ const PartyPage =async () => {
                     <div class="role-card">
                         <h1>${input}</h1>
                         <h4>Ton mot secret est</h4>
-                        <h5>${semblable}</h5>
+                        <h5>${semblable2}</h5>
                         <p class="action-ok">Suivant</p>
                     </div>
                 </div>
@@ -623,8 +630,8 @@ const PartyPage =async () => {
                 <div class="mrxx-card">
                     <h1>Mr.Xx a<br>été démasqué</h1>
                     <img src="${mrxx}">
-                    <input id="valider-input" type="text" placeholder="Deviner ?" name="deviner">
-                    <h2>${nomJoueur}, devine le mot des civils pour gagner !</h2>
+                    <input id="valider-input" type="text" placeholder="Deviner ?" name="deviner" autocomplete="off">
+                    <h2 class="alrt">${nomJoueur}, devine le mot des civils pour gagner !</h2>
                     <p class="action-ok" id="valider-but">Valider</p>
                 </div>
             </div>
@@ -641,10 +648,13 @@ const PartyPage =async () => {
         validerBut.addEventListener('click', () => {
             input = document.querySelector("#valider-input").value;
             if(input==='') {
-                window.alert("Ecrivez un mot");
+                document.querySelector(".alrt").style.color = "red";
+                document.querySelector(".alrt").textContent = "Tu dois rentrer un mot";
+                document.querySelector("#valider-input").style.animation = "alert 0.3s";
+                document.querySelector("#valider-input").style.border = "2px solid red";
             } else {
                 popUp.innerHTML = ``;
-                if(mot.toLowerCase() === input.toLowerCase()) {
+                if(mot2.toLowerCase() === input.toLowerCase()) {
                     console.log("Navigate bien !");
                     gagnerPartieM();
                 } else {
@@ -699,6 +709,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${spy}">
                         <h3>L'Incognito a gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
         } else {
@@ -709,6 +720,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${spy}">
                         <h3>Les Incognitos ont gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
         }
@@ -726,6 +738,7 @@ const PartyPage =async () => {
                     <img class="mrxx-win" src="${civil}">
                     <h3>Les Civils ont gagné</h3>
                 </div>
+                <img class="spirale" src="${spirale}">
             </div>
         `;
 
@@ -740,6 +753,7 @@ const PartyPage =async () => {
                     <img class="mrxx-win" src="${mrxx}">
                     <h3>Les Infiltrés ont gagné</h3>
                 </div>
+                <img class="spirale" src="${spirale}">
             </div>
         `;
         popUp.innerHTML = pop;
@@ -758,6 +772,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${mrxx}">
                         <h3>Le Mister.Xx a gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
         } else {
@@ -768,6 +783,7 @@ const PartyPage =async () => {
                         <img class="mrxx-win" src="${mrxx}">
                         <h3>Les Mister.Xx ont gagné</h3>
                     </div>
+                    <img class="spirale" src="${spirale}">
                 </div>
             `;
             

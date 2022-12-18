@@ -71,7 +71,7 @@ const LoginPage = () => {
         };
 
         const curved= document.querySelector("#curved");
-        const response= await fetch('/api/auths/login',options);
+        const response= await fetch(`${process.env.API_BASE_URL}/auths/login`,options);
         if(response.status==401){
             curved.innerHTML+= `<p>Mot de passe incorrect ! </p> `;
 

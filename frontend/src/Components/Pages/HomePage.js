@@ -9,11 +9,10 @@ const HomePage = async () => {
     <p><span>"INCO</span><span>GNITO"</span></p>
     <img id="topage" data-uri="/intro" src="${play}">
   </div>
-  
   `;
   try {
 
-  const response= await fetch('/api/parties')
+  const response= await fetch(`${process.env.API_BASE_URL}/parties`)
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
     const parties= await response.json();
 

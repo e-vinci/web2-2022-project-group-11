@@ -714,6 +714,20 @@ nav ul img:hover {
     height: 100px;
 }
 
+@keyframes alert {
+    0%{
+        transform: translateX(0px);
+    }
+
+    33% {
+        transform: translateX(10px);
+    }
+
+    66% {
+        transform: translateX(-10px);
+    }
+}
+
 .relancer-card {
     position: absolute;
     z-index: 10000;
@@ -725,6 +739,23 @@ nav ul img:hover {
     border: 3px solid rgb(189, 255, 224);
 }
 
+.spirale {
+    width: 750px;
+    position: absolute;
+    margin-top: 100px;
+    opacity: 0.3;
+    animation: turn 4s infinite;
+}
+
+@keyframes turn {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .ajouter-content {
     position: fixed;
@@ -1359,6 +1390,91 @@ nav ul img:hover {
 	background: white;
 	border-radius: 9px;
 	transition: 1s;
+}
+
+/* Word Page */
+
+.wrapper-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+
+ .wrapper{
+    text-align: center;
+    color: #444;
+    margin-top: 20px;
+    position: relative;
+    width: 400px;
+    height: 500px;
+    background:#74d7f0;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 0 50px rgba(0, 0,0,.1);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.wrapper h1 {
+    color: #444;
+}
+
+.wrapper button {
+    width: 100%;
+    height: 40px;
+    background: #FFFAF0;
+    border-radius: 30px;
+    cursor:pointer;
+    border:none;
+    outline:none;
+    font-size: 16px;
+    color: #444;
+    font-weight: 500;   
+}
+
+.input-box{
+    position: relative;
+    width: 320px;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top:50%;
+    left:5px;
+    transform: translateY(-50%);
+    color : transparent;
+    pointer-events: none;
+}
+
+.input-box input{
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    outline: none;
+    padding :0 5px;
+    font-size: 16px;
+    color: #444;
+}
+
+.no-account {
+    color:#444;
+}
+
+.no-account image {
+    size: 1px;
+}
+
+.curved{
+    position: absolute;
+    top : 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:  #7CFFCB;
+    z-index:-2;
+    clip-path:circle(98% at 0 0);
 }
 
 table {
