@@ -70,7 +70,12 @@ const LoginPage = () => {
 
         };
 
+        const curved= document.querySelector("#curved");
         const response= await fetch('/api/auths/login',options);
+        if(response.status==401){
+            curved.innerHTML+= `<p>Mot de passe incorrect ! </p> `;
+
+        }
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
         const authenticatedUser = await response.json(); // json() returns a promise => we wait for the data
