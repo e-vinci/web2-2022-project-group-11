@@ -7,7 +7,7 @@ import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
 import IntroPage from '../Pages/IntroPage';
 import PartyPage from '../Pages/PartyPage';
-import Logout from '../Logout/LogoutPage';
+import Logout from '../Logout/Logout';
 
 
 const routes = {

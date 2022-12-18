@@ -4,7 +4,7 @@ import rules from '../../img/rules.png';
 import inco from '../../img/spy.png';
 import idea from '../../img/idea.png';
 import login from '../../img/log-in.png';
-
+//import { getAuthenticatedUser } from '../../utils/auths';
 /**
  * Render the Navbar which is styled by using Bootstrap
  * Each item in the Navbar is tightly coupled with the Router configuration :

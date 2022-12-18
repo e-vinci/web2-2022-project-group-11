@@ -1,8 +1,10 @@
 import Navigate from "../Router/Navigate";
 import down from '../../img/down.png';
 import { setAuthenticatedUser } from "../../utils/auths";
+//import {Logout} from "../Logout/Logout" 
 
 const LoginPage = () => {
+   // Logout();
     const main = document.querySelector('main');
     main.innerHTML = `
     <div class="wrapper-box">
