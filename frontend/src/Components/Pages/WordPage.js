@@ -1,4 +1,7 @@
+/* eslint-disable no-undef */
+/* eslint-disable eqeqeq */
 import { getAuthenticatedUser } from "../../utils/auths";
+
 const WordPage = async  () => {
     const main = document.querySelector('main');
     let isAdmin= false; 
@@ -57,9 +60,9 @@ const WordPage = async  () => {
 
     const motsTemporairesAsHtmlTable = getHtmlMotsTemporairesTableAsString(words);
 
-    function getHtmlMotsTemporairesTableAsString(words) {
-        console.log("coucou");
-        if (words?.length === undefined || words.length === 0) {
+    function getHtmlMotsTemporairesTableAsString(wordsi) {
+  
+        if (wordsi?.length === undefined || words.length === 0) {
           return '<p class="p-5">No temporary words yet : (</p>';
         }
       
@@ -76,7 +79,7 @@ const WordPage = async  () => {
       </thead>
       <tbody>`;
       
-        words.forEach((element) => {
+        wordsi.forEach((element) => {
           htmlMotsTemporairesTable += `
           <tr>
             <td>${element.mot}</td>
@@ -171,7 +174,7 @@ const WordPage = async  () => {
     }); 
   };
 
-  async function validerMot(id){
+  async function validerMot(id) {
     if(!id) return undefined;
    
     const authenticatedUser = getAuthenticatedUser();
@@ -192,10 +195,11 @@ const WordPage = async  () => {
     const motValidé = await response.json(); // json() returns a promise => we wait for the data
 
     console.log(' nouveau mot validé : ', motValidé);
+    return true;
   };
 
 
-  async function refuserMot(id){
+  async function refuserMot(id) {
     if(!id) return undefined;
    
     const authenticatedUser = getAuthenticatedUser();
@@ -217,6 +221,8 @@ const WordPage = async  () => {
     const motValidé = await response.json(); // json() returns a promise => we wait for the data
 
     console.log(' nouveau mot validé : ', motValidé);
+
+    return true;
   };
 
     

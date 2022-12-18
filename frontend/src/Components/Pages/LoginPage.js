@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import Navigate from "../Router/Navigate";
 // eslint-disable-next-line import/newline-after-import
 import down from '../../img/down.png';
@@ -39,7 +40,6 @@ const LoginPage = () => {
     const registerLink = document.getElementById('registerLinkBtn');
     registerLink.addEventListener('click', () => {
         Navigate('/register');
-        console.log('hello');
     })
 
     const loginBtn = document.querySelector("#login_btn");
@@ -82,8 +82,8 @@ const LoginPage = () => {
 
         console.log('New logged user : ', authenticatedUser);
         setAuthenticatedUser(authenticatedUser);
-        const isAdmin= authenticatedUser.isAdmin;
-        console.log("regarde" + authenticatedUser);
+        // eslint-disable-next-line prefer-destructuring, no-unused-vars
+        const isAdmin = authenticatedUser.isAdmin;
         Navbar();
         Navigate('/');
         

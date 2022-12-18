@@ -1,3 +1,6 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-shadow */
 /* eslint-disable no-unreachable-loop */
 /* eslint-disable no-const-assign */
 /* eslint-disable no-plusplus */
@@ -7,6 +10,7 @@ import mrxx from "../../img/mrxx.png";
 import spy from "../../img/incognito.png"; 
 import who from "../../img/who.png";
 import civil from "../../img/civil.png";
+import trophee from "../../img/coupe.png";
 
 import perso1 from "../../img/avatar/1.png";
 import perso2 from "../../img/avatar/2.png";
@@ -44,7 +48,6 @@ const PartyPage =async () => {
     const authenticatedUser = getAuthenticatedUser();
 
     createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX);
-    const idMember= authenticatedUser.id;
     async function createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX){
         console.log(authenticatedUser);
 
@@ -60,7 +63,6 @@ const PartyPage =async () => {
             }),
             headers: {
                 'Content-Type' : 'application/json',
-                Authorization :authenticatedUser.token
 
             },
 
@@ -71,13 +73,12 @@ const PartyPage =async () => {
 
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
     
-        console.log('New partie : ', newPartie);
         const idMot= newPartie.idMot;
 
 
         localStorage.setItem("idMot", idMot);
 
-        console.log("id" + localStorage.getItem( "idMot"));
+
     
     
     
@@ -161,12 +162,12 @@ const PartyPage =async () => {
                 <p>Infiltrés restants</p>
                 <div class="rest-container">
                     <div class="rest">
-                        <img src="${mrxx}">
-                        <p id="mrRe">${nombreMrXX}</p>
-                    </div>
-                    <div class="rest">
                         <img src="${spy}">
                         <p id="incoRe">${nombreIncognitos}</p>
+                    </div>
+                    <div class="rest">
+                        <img src="${mrxx}">
+                        <p id="mrRe">${nombreMrXX}</p>
                     </div>
                 </div>
             </div>
@@ -189,7 +190,6 @@ const PartyPage =async () => {
     let mrxR = nombreMrXX;
     let incoR = nombreIncognitos;
     let civilR = nombreJoueurs - nombreIncognitos - nombreMrXX;
-    console.log("Civil debut de partie" + civilR);
 
     const cardContainer = document.querySelector(".card-container");
 
@@ -459,7 +459,7 @@ const PartyPage =async () => {
             popUp.innerHTML = ``;
             if(o+1 >= nombreJoueurs) {
                 infoTitle.innerHTML = `Heure de décrire`;
-                infoMessage.innerHTML = `Décrivez votre mot secret dans l'ordre indiqué, en utilisant juste un mot`;
+                infoMessage.innerHTML = `Décrivez votre mot secret dans l'ordre, en commençant par le numéro 1 puis dans le sens horlogé. Utilisez juste un mot`;
                 
                 let vote = `
                     <div class="vote-but">
@@ -533,6 +533,7 @@ const PartyPage =async () => {
                         envie[i].querySelector('.avat').src = spy;
                         incoR -= 1;
                         document.querySelector("#incoRe").innerHTML = incoR;
+                        tuerIncognito();
                     } else if(envie[i].classList.contains("mrxx") === true) {
                         envie[i].querySelector('.avat').src = mrxx;
                         mrxR -= 1;
@@ -558,6 +559,39 @@ const PartyPage =async () => {
 
     };
 
+    function tuerIncognito() {
+
+        popUp.innerHTML = `
+            <div class="inco-content">
+                <div class="civil-card">
+                    <h1>Incognito éliminé !</h1>
+                    <img src="${spy}">
+                    <h2>${nomJoueur}</h2>
+                    <p class="action-ok">OK</p>
+                </div>
+            </div>
+        `;   
+
+        retirerPopUpInco();
+    };
+
+    function retirerPopUpInco() {
+        const incoBut = document.querySelector(".inco-content");
+
+        incoBut.addEventListener('click', () => {
+
+            popUp.innerHTML = ``;
+
+            if(incoR == 0 && mrxR == 0) {
+                gagnerPartieC();
+            } else {
+                // empty
+            }
+        }); 
+    };
+
+
+
     function tuerCivil() {
 
         let pop = `
@@ -577,23 +611,20 @@ const PartyPage =async () => {
 
     function retirerPopUpCivil() {
         const civilBut = document.querySelector(".civil-content");
-        console.log("Nombre civil restant" + civilR);
 
         civilBut.addEventListener('click', () => {
 
             popUp.innerHTML = ``;
 
             if(civilR === 1) {
-                console.log("plus que 1 civil");
                 lancerQuoi();
             } else {
                 // empty
             }
         });      
-    }
+    };
 
     function lancerQuoi() {
-        console.log("Dans lancerQuoi");
         let iR = incoR;
         let mR = mrxR;
         console.log(iR + mR);
@@ -603,17 +634,15 @@ const PartyPage =async () => {
             gagnerPartieInfil();
         } 
         
-        if(iR === 0 && mR >= 1) {
+        if(iR == 0 && mR >= 1) {
             console.log("mrxx");
             gagnerPartieM();
         } 
 
-        if(iR >= 1 && mR === 0) {
+        if(iR >= 1 && mR == 0) {
             console.log("inco");
             gagnerPartieI();
         }
-        
-        console.log(incoR + " " + mrxR);
         
     }
 
@@ -675,51 +704,39 @@ const PartyPage =async () => {
         const mmBut = document.querySelector(".wrong-content");
         
         mmBut.addEventListener('click', () => {
-            console.log(mrxR + " " + incoR);
 
-            if(mrxR === 0 && incoR === 0) {
+            if(mrxR == 0 && incoR == 0) {
+                popUp.innerHTML = ``;
                 gagnerPartieC();
-            } 
+            } else {
+                popUp.innerHTML = ``;
+            }
 
-            popUp.innerHTML = ``;
         });
     };
 
-    function gagnerPartieC() {
-        let pop = `
-            <div class="relancer-content">
-                <div class="ajouter-card">
-                    <img class="mrxx-win" src="${mrxx}">
-                    <h3>Les Civils ont gagné</h3>
-                    <p class="ajouter-ok">Relancer une partie</p>
-                </div>
-            </div>
-        `;
-        popUp.innerHTML = pop;
-        relancerPartie();
-    };
 
     function gagnerPartieI() {
         console.log("viens ici");
         let pop = ``;
 
-        if(nombreIncognitos === 1) {
+        if(nombreIncognitos == 1) {
             pop = `
                 <div class="relancer-content">
-                    <div class="ajouter-card">
-                        <img class="mrxx-win" src="${mrxx}">
-                        <h3>L'Incognito a gagné !</h3>
-                        <p class="ajouter-ok">Relancer une partie</p>
+                    <div class="relancer-card">
+                        <img class="win-trophee" src="${trophee}">
+                        <img class="mrxx-win" src="${spy}">
+                        <h3>L'Incognito a gagné</h3>
                     </div>
                 </div>
             `;
         } else {
             pop = `
                 <div class="relancer-content">
-                    <div class="ajouter-card">
-                        <img class="mrxx-win" src="${mrxx}">
-                        <h3>Les Incognitos ont gagné !</h3>
-                        <p class="ajouter-ok">Relancer une partie</p>
+                    <div class="relancer-card">
+                        <img class="win-trophee" src="${trophee}">
+                        <img class="mrxx-win" src="${spy}">
+                        <h3>Les Incognitos ont gagné</h3>
                     </div>
                 </div>
             `;
@@ -729,14 +746,28 @@ const PartyPage =async () => {
         relancerPartie();
     };
 
+    function gagnerPartieC() {
+
+        popUp.innerHTML = `
+            <div class="relancer-content">
+                <div class="relancer-card">
+                    <img class="win-trophee" src="${trophee}">
+                    <img class="mrxx-win" src="${civil}">
+                    <h3>Les Civils ont gagné</h3>
+                </div>
+            </div>
+        `;
+
+        relancerPartie();
+    };
+
     function gagnerPartieInfil() {
         let pop = `
             <div class="relancer-content">
-                <div class="ajouter-card">
+                <div class="relancer-card">
+                    <img class="win-trophee" src="${trophee}">
                     <img class="mrxx-win" src="${mrxx}">
-                    <img class="mrxx-win" src="${spy}">
-                    <h3>Les Infiltrés ont gagné !</h3>
-                    <p class="ajouter-ok">Relancer une partie</p>
+                    <h3>Les Infiltrés ont gagné</h3>
                 </div>
             </div>
         `;
@@ -748,23 +779,23 @@ const PartyPage =async () => {
         console.log("Viens ici");
         let pop = ``;
 
-        if(nombreMrXX === 1) {
+        if(nombreMrXX == 1) {
             pop = `
                 <div class="relancer-content">
-                    <div class="ajouter-card">
+                    <div class="relancer-card">
+                        <img class="win-trophee" src="${trophee}">
                         <img class="mrxx-win" src="${mrxx}">
                         <h3>Le Mister.Xx a gagné</h3>
-                        <p class="ajouter-ok">Relancer une partie</p>
                     </div>
                 </div>
             `;
         } else {
             pop = `
                 <div class="relancer-content">
-                    <div class="ajouter-card">
+                    <div class="relancer-card">
+                        <img class="win-trophee" src="${trophee}">
                         <img class="mrxx-win" src="${mrxx}">
-                        <h3>Les Mister.Xx ont gagnés !</h3>
-                        <p class="ajouter-ok">Relancer une partie</p>
+                        <h3>Les Mister.Xx ont gagné</h3>
                     </div>
                 </div>
             `;
@@ -788,7 +819,7 @@ const PartyPage =async () => {
 
     function donnerOrdrePassage() {
         const tabCivil = document.querySelectorAll(".civil");
-        const tabJoueur = document.querySelectorAll(".card");
+
         randomNombre = Math.ceil(Math.random() * tabCivil.length);
         let premier = tabCivil[0].id;
 
@@ -803,37 +834,6 @@ const PartyPage =async () => {
                 <p>1</p>
             </div>
         `;
-
-        let numeroMax = nombreJoueurs;
-        let numeroMin = 2;
-        let tableau = new Array(nombreJoueurs-1);
-
-        for(let i=0; i < tabJoueur.length; i++) {
-            randomNombre = Math.ceil(Math.random() * (numeroMax - numeroMin + 1) + numeroMin);
-            tableau[0] = randomNombre;
-            for(let y=0; y < nombreJoueurs-1; y++) { 
-
-                randomNombre = Math.ceil(Math.random() * (numeroMax - numeroMin + 1) + numeroMin);
-
-                while(tableau[y] === randomNombre) {
-                    randomNombre = Math.ceil(Math.random() * (numeroMax - numeroMin + 1) + numeroMin);
-                };
-
-                tableau[i] = randomNombre;
-            }
-
-            if(i === premier-1){
-                // empty 
-            } else {
-                tabJoueur[i].lastElementChild.innerHTML =  `
-                    <div class="passage">
-                        <p>${randomNombre}</p>
-                    </div>
-                `;
-            }
-        }
-
-        console.log(tableau);
     };
 
 
