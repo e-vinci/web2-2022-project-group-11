@@ -1,4 +1,4 @@
-import { setAuthenticatedUser } from "../../utils/auths";
+/* eslint-disable eqeqeq */
 import Navigate from "../Router/Navigate";
 
 const RegisterPage = () => {

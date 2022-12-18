@@ -616,6 +616,24 @@ nav ul img:hover {
 	opacity: 1;
 }
 
+.inco-content {
+    position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10000;
+	background: rgba(0, 0, 0, 0.184);
+    backdrop-filter: blur(5px);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	cursor: pointer;
+	justify-content: center;
+	align-items: center;
+	visibility: visible;
+	opacity: 1;
+}
+
 .wrong-content {
     position: fixed;
 	top: 50%;
@@ -655,17 +673,59 @@ nav ul img:hover {
 }
 
 .mrxx-win {
-    width: 200px;
-    margin-top: 50px;
+    width: 350px;
+    margin-top: 110px;
     margin-bottom: 30px;
+}
+
+.win-trophee {
+    width: 130px;
+    position: absolute;
+    animation: trophee 3s infinite;
+    margin-left: 110px;
+    margin-top: -50px;
+}
+
+@keyframes trophee {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .relancer-content h3 {
     font-size: 40px;
     font-weight: bold;
-    color: gold;
-    margin-bottom: -10px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(102, 225, 241);
+    width: 110%;
+    text-align: center;
+    position: absolute;
+    margin-top: -70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -23px;
+    text-shadow: rgba(0, 0, 0, 0.44) 1px 0 10px;
+    border: 3px solid rgba(255, 255, 255, 0.305);
+    border-radius: 10px;
+    height: 100px;
 }
+
+.relancer-card {
+    position: absolute;
+    z-index: 10000;
+    width: 30%;
+    height: 500px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(190deg, rgba(100, 255, 180, 0.87), rgba(60, 161, 112, 0.87));
+    border: 3px solid rgb(189, 255, 224);
+}
+
 
 .ajouter-content {
     position: fixed;
@@ -1036,9 +1096,8 @@ nav ul img:hover {
     width: 14%;
     background: red;
     text-align: center;
-    background: linear-gradient(#c5ff519f, #bdfe7da8);
-    border-top: 1px solid rgba(235, 235, 235, 0.562);
-    border-left: 1px solid rgba(225, 225, 225, 0.571);
+    background: linear-gradient(#51ffa89f, #51ffa89f);
+    border: 2px solid rgba(255, 255, 255, 0.23);
     backdrop-filter: blur(10px);
     box-shadow: rgba(50, 50, 93, 0.145) 0px 6px 12px -2px, rgba(0, 0, 0, 0.118) 0px 3px 7px -3px;
     border-radius: 10px;

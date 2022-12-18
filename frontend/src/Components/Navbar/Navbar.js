@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
 import rules from '../../img/rules.png';
