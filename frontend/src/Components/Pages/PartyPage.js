@@ -44,7 +44,6 @@ const PartyPage =async () => {
     const authenticatedUser = getAuthenticatedUser();
 
     createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX);
-    const idMember= authenticatedUser.id;
     async function createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX){
         console.log(authenticatedUser);
 
@@ -60,7 +59,6 @@ const PartyPage =async () => {
             }),
             headers: {
                 'Content-Type' : 'application/json',
-                Authorization :authenticatedUser.token
 
             },
 
@@ -603,7 +601,7 @@ const PartyPage =async () => {
             gagnerPartieInfil();
         } 
         
-        if(iR === 0 && mR >= 1) {
+        if(iR == 0 && mR >= 1) {
             console.log("mrxx");
             gagnerPartieM();
         } 
@@ -675,9 +673,11 @@ const PartyPage =async () => {
         const mmBut = document.querySelector(".wrong-content");
         
         mmBut.addEventListener('click', () => {
+            console.log("on est ici");
             console.log(mrxR + " " + incoR);
 
-            if(mrxR === 0 && incoR === 0) {
+            if(mrxR == 0 && incoR == 0) {
+                console.log("gagner PartieC"); 
                 gagnerPartieC();
             } 
 
