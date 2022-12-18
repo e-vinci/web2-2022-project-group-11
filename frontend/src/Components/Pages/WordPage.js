@@ -23,14 +23,9 @@ const WordPage = async  () => {
     <div class="wrapper-box">
 
         <div class="wrapper" id ="formMotsTemporaires">
-<<<<<<< HEAD
-
-        <h1>Suggerez un mot et son synonyme</h1>
-=======
         <div class="curved" id="curved"></div>
         <h1>Mots</h1>
         <p>Suggerez un mot et son semblable</p>
->>>>>>> 9ced907f1229878a675c88dbd8aafd90b9545422
             <div class="input-box"> 
                 <input type="text" name="word" placeholder="Mot" id= "word">
             </div>

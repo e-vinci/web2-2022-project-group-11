@@ -93,7 +93,7 @@ const PartyPage =async () => {
             console.error('HomePage::error: ', err);
           };
     
-          const mot= localStorage.getItem("mot");
+          const mot = localStorage.getItem("mot");
           
           console.log(mot);
     
@@ -150,6 +150,9 @@ const PartyPage =async () => {
 
         </div>
     `;
+
+    let mot2 = localStorage.getItem("mot");
+    let semblable2 = localStorage.getItem("semblable");
 
     // let idPerso = 1;
     let idCard = 0;
@@ -384,9 +387,6 @@ const PartyPage =async () => {
         }
 
         let pop = ``;
-        let mot = localStorage.getItem("mot");
-        let semblable= localStorage.getItem("semblable");
-        console.log("la "+ mot);
 
         if(role === 'Civil') {
             pop = ` 
@@ -394,7 +394,7 @@ const PartyPage =async () => {
                     <div class="role-card">
                         <h1>${input}</h1>
                         <h4>Ton mot secret est</h4>
-                        <h5>${mot}</h5>
+                        <h5>${mot2}</h5>
                         <p class="action-ok">Suivant</p>
                     </div>
                 </div>
@@ -405,7 +405,7 @@ const PartyPage =async () => {
                     <div class="role-card">
                         <h1>${input}</h1>
                         <h4>Ton mot secret est</h4>
-                        <h5>${semblable}</h5>
+                        <h5>${semblable2}</h5>
                         <p class="action-ok">Suivant</p>
                     </div>
                 </div>
@@ -654,7 +654,7 @@ const PartyPage =async () => {
                 document.querySelector("#valider-input").style.border = "2px solid red";
             } else {
                 popUp.innerHTML = ``;
-                if(mot.toLowerCase() === input.toLowerCase()) {
+                if(mot2.toLowerCase() === input.toLowerCase()) {
                     console.log("Navigate bien !");
                     gagnerPartieM();
                 } else {
