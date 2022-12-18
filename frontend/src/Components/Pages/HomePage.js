@@ -13,7 +13,7 @@ const HomePage = async () => {
   `;
   try {
 
-  const response= await fetch(`/api/parties`)
+  const response= await fetch(`${process.env.API_BASE_URL}/parties`)
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
     const parties= await response.json();
 
