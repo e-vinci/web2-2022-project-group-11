@@ -49,7 +49,6 @@ const PartyPage =async () => {
     const authenticatedUser = getAuthenticatedUser();
 
     createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX);
-    const idMember= authenticatedUser.id;
     async function createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX){
         console.log(authenticatedUser);
 
@@ -60,12 +59,11 @@ const PartyPage =async () => {
                 nombreJoueurs,
                 nombreIncognitos,
                 nombreMrXX,
+                // eslint-disable-next-line no-undef
                 idMember
-
             }),
             headers: {
                 'Content-Type' : 'application/json',
-                Authorization :authenticatedUser.token
 
             },
 
