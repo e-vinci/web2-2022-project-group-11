@@ -153,6 +153,7 @@ const PartyPage =async () => {
 
     let mot2 = localStorage.getItem("mot");
     let semblable2 = localStorage.getItem("semblable");
+    console.log(mot2 + "111");
 
     // let idPerso = 1;
     let idCard = 0;
