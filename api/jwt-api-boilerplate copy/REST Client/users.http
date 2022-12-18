@@ -3,7 +3,7 @@
 
 
 ###
-GET {{baseUrl}}/users/
+GET {{baseUrl}}/users/2
 
 ###
 POST {{baseUrl}}/users/

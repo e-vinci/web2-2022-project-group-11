@@ -8,7 +8,22 @@ const defaultMots=[];
 function readAllMots(){
     const mots = parse(jsonDbPath,defaultMots);
     return mots;
-}
+};
+function readOneFromId(id) {
+    const mots = parse(jsonDbPath, defaultMots);
+    const indexOfMotFound = mots.findIndex((mot) => mot.id == id);
+  
+    return mots[indexOfMotFound];
+  };
+
+
+  function getUsersById(id){
+    const users= parse(jsonDbPath,defaultUsers);
+    const foundIndex = users.findIndex((user)=> user.id== id )
+    const foundUser= users[foundIndex];
+    return foundUser;
+  
+  };
 
 function readRandomMot(){
     const mots= parse(jsonDbPath,defaultMots);
@@ -40,4 +55,4 @@ function getNextId() {
     return nextId;
   }
 
-  module.exports={createOneMot, readAllMots, readRandomMot};
+  module.exports={createOneMot, readAllMots, readOneFromId, readRandomMot};

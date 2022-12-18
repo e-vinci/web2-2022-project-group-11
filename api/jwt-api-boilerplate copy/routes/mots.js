@@ -1,6 +1,6 @@
 const express= require('express');
 
-const{readAllMots, createOneMot, readRandomMot} = require('../models/mot');
+const{readAllMots, createOneMot,readOneFromId, readRandomMot} = require('../models/mot');
 const {authorize}= require('../utils/auths');
 
 
@@ -25,6 +25,10 @@ router.post('/', authorize,(req,res)=> {
     return res.json(createdMot);
 
 
+});
+
+router.get('/:id',(req,res)=> {
+   return res.json(readOneFromId(req.params.id));
 });
 
 module.exports=router;

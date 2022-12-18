@@ -6,6 +6,11 @@
 GET {{baseUrl}}/mots/
 
 ###
+GET {{baseUrl}}/mots/1
+
+
+
+###
 GET {{baseUrl}}/mots/random
 #hello
 ###

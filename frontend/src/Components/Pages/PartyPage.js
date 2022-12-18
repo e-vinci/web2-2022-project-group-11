@@ -12,13 +12,71 @@ import chevronD from "../../img/chevron-character-droit.png";
 import chevronG from "../../img/chevron-character-gauche.png";
 import warning from "../../img/warning.png";
 import { clearPage } from '../../utils/render';
+import { getAuthenticatedUser } from "../../utils/auths";
 
 
-const PartyPage = () => {
+const PartyPage =async () => {
     const nombreJoueurs= localStorage.getItem("nbrJoueurs");
     const nombreMrXX= localStorage.getItem("nbrX");
     const nombreIncognitos= localStorage.getItem("nbrIncognitos");
     clearPage();
+    const authenticatedUser = getAuthenticatedUser();
+
+    createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX);
+    const idMember= authenticatedUser.id;
+    async function createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX){
+        console.log(authenticatedUser);
+
+        
+
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({
+               
+                nombreJoueurs,
+                nombreIncognitos,
+                nombreMrXX,
+                idMember
+
+            }),
+            headers: {
+                'Content-Type' : 'application/json',
+                Authorization :authenticatedUser.token
+
+            },
+
+        };
+
+        const response= await fetch('/api/parties',options);
+        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+        const newPartie = await response.json(); // json() returns a promise => we wait for the data
+
+        console.log('New partie : ', newPartie);
+        localStorage.setItem("idMot", newPartie.idMot);
+        console.log(idMot);
+       
+        
+
+    };
+    const idMot= localStorage.getItem("idMot");
+    console.log("ici"+idMot);
+
+    
+    try {
+
+        const response= await fetch(`/api/mots/${idMot}`)
+            if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+          const leMot= await response.json();
+      
+          console.log(leMot);
+      }catch (err) {
+        console.error('HomePage::error: ', err);
+      }
+
+
+
     
     const main = document.querySelector('main');
     
