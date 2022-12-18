@@ -1,13 +1,15 @@
 import { getAuthenticatedUser } from "../../utils/auths";
 const WordPage = async  () => {
     const main = document.querySelector('main');
-    const isAdmin= true; 
+    let isAdmin= false; 
 
     if(getAuthenticatedUser()!= undefined){
     
       const authenticatedUser= getAuthenticatedUser();
-      console.log(authenticatedUser.isAdmin);
-      if(authenticatedUser.isAdmin) isAdmin= true;
+      isAdmin=authenticatedUser.isAdmin;
+
+       
+
 
     }
 
@@ -90,16 +92,17 @@ const WordPage = async  () => {
       };
 
 
-
-  if ( isAdmin){
-     motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
-     tabMotsTemporaires.innerHTML = motsTemporairesAsHtmlTable;
-
-  }
-  else{
-      motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
+    
+      if(isAdmin===true){
+         motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
+         tabMotsTemporaires.innerHTML = motsTemporairesAsHtmlTable;
+    
       }
-
+      else  {
+    
+          motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
+      }
+      
    const nouveauMotBtn= document.querySelector("#word_btn");
     nouveauMotBtn.addEventListener("click", suggererMot);
 
@@ -214,7 +217,6 @@ const WordPage = async  () => {
     console.log(' nouveau mot validé : ', motValidé);
   };
 
-    
     
 
 
