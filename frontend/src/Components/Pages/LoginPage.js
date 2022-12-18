@@ -1,4 +1,5 @@
 import Navigate from "../Router/Navigate";
+// eslint-disable-next-line import/newline-after-import
 import down from '../../img/down.png';
 const LoginPage = () => {
     const main = document.querySelector('main');
@@ -40,6 +41,7 @@ const LoginPage = () => {
     loginBtn.addEventListener("click", login);
    
    
+   // eslint-disable-next-line no-unused-vars
    async function register(e){
     console.log("hok");
     

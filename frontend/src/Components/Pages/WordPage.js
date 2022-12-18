@@ -118,7 +118,7 @@ const WordPage = async  () => {
 
 
         const response= await fetch('/api/motsTemporaires',options);
-        if(response.status==401) main.innerHTML+= `<p> vous devez etre connecté pour suggerer un mot.</p> `;
+        if(response.status===401) main.innerHTML+= `<p> vous devez etre connecté pour suggerer un mot.</p> `;
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
         const newMot = await response.json(); // json() returns a promise => we wait for the data
 
