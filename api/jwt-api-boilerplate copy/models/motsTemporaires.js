@@ -42,7 +42,7 @@ function deleteOneMotTemporaire(moti){
     const mots = parse(jsonDbPath,defaultMotsTemporaires);
     const indexFound= mots.findIndex((mot)=> mot.mot== moti);
     if(indexFound<0) return undefined;
-    mots.pop(mots[indexFound]);
+    mots.splice(indexFound,1);
     serialize(jsonDbPath,mots);
 
 };
