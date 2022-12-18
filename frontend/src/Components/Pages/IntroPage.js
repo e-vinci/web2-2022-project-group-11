@@ -4,7 +4,7 @@ import moins from "../../img/moins.png";
 import plus2 from "../../img/plus2.png";
 import moins2 from "../../img/moins2.png";
 import civil from "../../img/civil.png";
-import inco from "../../img/spy.png";
+import inco from "../../img/incognito.png";
 import mrxx from "../../img/mrxx.png";
 
 

@@ -4,7 +4,7 @@
 /* eslint-disable no-loop-func */
 /* eslint-disable prefer-const */
 import mrxx from "../../img/mrxx.png";
-import spy from "../../img/spy.png";
+import spy from "../../img/incognito.png"; 
 import who from "../../img/who.png";
 import civil from "../../img/civil.png";
 
@@ -95,11 +95,11 @@ const PartyPage =async () => {
         console.error('HomePage::error: ', err);
       };
 
-      const mot= localStorage.getItem("mot");
-      
+      const mot = localStorage.getItem("mot");
+
       console.log(mot);
 
-      const semblable= localStorage.getItem("semblable");
+      const semblable = localStorage.getItem("semblable");
 
       console.log(semblable);
 
@@ -111,24 +111,6 @@ const PartyPage =async () => {
     main.innerHTML = `
         <div class="pop-up">
         
-        
-        <div class="civil-content">
-            <div class="civil-card">
-                <h1>1 Civil(e) en moins !</h1>
-                <img src="${civil}">
-                <h2>Valérie</h2>
-                <p class="action-ok">OK</p>
-            </div>
-        </div>
-        <div class="mrxx-content">
-            <div class="mrxx-card">
-                <h1>Mr.Xx a<br>été démasqué</h1>
-                <img src="${mrxx}">
-                <input type="text" placeholder="Deviner ?" name="deviner">
-                <h2>Jérémi, devine le mot des civils pour gagner !</h2>
-                <p class="action-ok">OK</p>
-            </div>
-        </div>
         </div>
         <p class="invi">i</p>
         <div class="tour-container">
@@ -146,11 +128,11 @@ const PartyPage =async () => {
                 <div class="rest-container">
                     <div class="rest">
                         <img src="${mrxx}">
-                        <p>${nombreMrXX}</p>
+                        <p id="mrRe">${nombreMrXX}</p>
                     </div>
                     <div class="rest">
                         <img src="${spy}">
-                        <p>${nombreIncognitos}</p>
+                        <p id="incoRe">${nombreIncognitos}</p>
                     </div>
                 </div>
             </div>
@@ -168,6 +150,12 @@ const PartyPage =async () => {
     // let idPerso = 1;
     let idCard = 0;
     let input = 'rien';
+    let nomJoueur = '';
+    
+    let mrxR = nombreMrXX;
+    let incoR = nombreIncognitos;
+    let civilR = nombreJoueurs - nombreIncognitos - nombreMrXX;
+    console.log("Civil debut de partie" + civilR);
 
     const cardContainer = document.querySelector(".card-container");
 
@@ -182,7 +170,6 @@ const PartyPage =async () => {
 
     createCard();
     lancerPopUpAction(o);
-
 
 
     function createCard() {
@@ -395,7 +382,7 @@ const PartyPage =async () => {
                     <div class="role-card">
                         <h1>${input}</h1>
                         <h4>Ton mot secret est</h4>
-                        <h5>Banane</h5>
+                        <h5>${mot}</h5>
                         <p class="action-ok">Suivant</p>
                     </div>
                 </div>
@@ -406,7 +393,7 @@ const PartyPage =async () => {
                     <div class="role-card">
                         <h1>${input}</h1>
                         <h4>Ton mot secret est</h4>
-                        <h5>Banane</h5>
+                        <h5>${semblable}</h5>
                         <p class="action-ok">Suivant</p>
                     </div>
                 </div>
@@ -502,17 +489,21 @@ const PartyPage =async () => {
                     envie[i].classList.remove('vie');
                     envie[i].classList.add('card-mort');
 
-                    console.log(envie[i].classList.contains("civil"));
+                    nomJoueur = envie[i].querySelector('.avatname').textContent;
                     
                     if(envie[i].classList.contains("civil") === true) {
-                        console.log("civil");
                         envie[i].querySelector('.avat').src = civil;
+                        civilR -= 1;
+                        tuerCivil();
                     } else if(envie[i].classList.contains("inco") === true) {
-                        console.log("inco");
                         envie[i].querySelector('.avat').src = spy;
+                        incoR -= 1;
+                        document.querySelector("#incoRe").innerHTML = incoR;
                     } else if(envie[i].classList.contains("mrxx") === true) {
-                        console.log("mrxx");
                         envie[i].querySelector('.avat').src = mrxx;
+                        mrxR -= 1;
+                        document.querySelector("#mrRe").innerHTML = mrxR;
+                        trouverMot();
                     }
                     
 
@@ -531,6 +522,234 @@ const PartyPage =async () => {
             });
         }
 
+    };
+
+    function tuerCivil() {
+
+        let pop = `
+            <div class="civil-content">
+                <div class="civil-card">
+                    <h1>1 Civil(e) en moins !</h1>
+                    <img src="${civil}">
+                    <h2>${nomJoueur}</h2>
+                    <p class="action-ok">OK</p>
+                </div>
+            </div>
+        `;
+
+        popUp.innerHTML = pop;        
+        retirerPopUpCivil();
+    };
+
+    function retirerPopUpCivil() {
+        const civilBut = document.querySelector(".civil-content");
+        console.log("Nombre civil restant" + civilR);
+
+        civilBut.addEventListener('click', () => {
+
+            popUp.innerHTML = ``;
+
+            if(civilR === 1) {
+                console.log("plus que 1 civil");
+                lancerQuoi();
+            } else {
+                // empty
+            }
+        });      
+    }
+
+    function lancerQuoi() {
+        console.log("Dans lancerQuoi");
+        let iR = incoR;
+        let mR = mrxR;
+        console.log(iR + mR);
+
+        if(iR >= 1 && mR >= 1) {
+            console.log("Infil");
+            gagnerPartieInfil();
+        } 
+        
+        if(iR === 0 && mR >= 1) {
+            console.log("mrxx");
+            gagnerPartieM();
+        } 
+
+        if(iR >= 1 && mR === 0) {
+            console.log("inco");
+            gagnerPartieI();
+        }
+        
+        console.log(incoR + " " + mrxR);
+        
+    }
+
+    function trouverMot() {
+        let pop = `
+            <div class="mrxx-content">
+                <div class="mrxx-card">
+                    <h1>Mr.Xx a<br>été démasqué</h1>
+                    <img src="${mrxx}">
+                    <input id="valider-input" type="text" placeholder="Deviner ?" name="deviner">
+                    <h2>${nomJoueur}, devine le mot des civils pour gagner !</h2>
+                    <p class="action-ok" id="valider-but">Valider</p>
+                </div>
+            </div>
+        `;
+
+        popUp.innerHTML = pop;
+        verifierMot();
+    };
+
+    function verifierMot() {
+
+        const validerBut = document.querySelector("#valider-but");
+
+        validerBut.addEventListener('click', () => {
+            input = document.querySelector("#valider-input").value;
+            if(input==='') {
+                window.alert("Ecrivez un mot");
+            } else {
+                popUp.innerHTML = ``;
+                if(mot.toLowerCase() === input.toLowerCase()) {
+                    console.log("Navigate bien !");
+                    gagnerPartieM();
+                } else {
+                    tuerMrxx();
+                }
+            }
+        });
+
+    };
+
+    function tuerMrxx() {
+
+        let pop = `
+            <div class="wrong-content">
+                <div class="mrxx-card">
+                    <h1>Désolé, mauvaise<br>réponse !</h1>
+                    <img src="${mrxx}">
+                    <p class="action-ok">OK</p>
+                </div>
+            </div>
+        `;
+        
+        popUp.innerHTML = pop;
+        retirerPopUpMrx();
+    };
+
+    function retirerPopUpMrx() {
+        const mmBut = document.querySelector(".wrong-content");
+        
+        mmBut.addEventListener('click', () => {
+            console.log(mrxR + " " + incoR);
+
+            if(mrxR === 0 && incoR === 0) {
+                gagnerPartieC();
+            } 
+
+            popUp.innerHTML = ``;
+        });
+    };
+
+    function gagnerPartieC() {
+        let pop = `
+            <div class="relancer-content">
+                <div class="ajouter-card">
+                    <img class="mrxx-win" src="${mrxx}">
+                    <h3>Les Civils ont gagné</h3>
+                    <p class="ajouter-ok">Relancer une partie</p>
+                </div>
+            </div>
+        `;
+        popUp.innerHTML = pop;
+        relancerPartie();
+    };
+
+    function gagnerPartieI() {
+        console.log("viens ici");
+        let pop = ``;
+
+        if(nombreIncognitos === 1) {
+            pop = `
+                <div class="relancer-content">
+                    <div class="ajouter-card">
+                        <img class="mrxx-win" src="${mrxx}">
+                        <h3>L'Incognito a gagné !</h3>
+                        <p class="ajouter-ok">Relancer une partie</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            pop = `
+                <div class="relancer-content">
+                    <div class="ajouter-card">
+                        <img class="mrxx-win" src="${mrxx}">
+                        <h3>Les Incognitos ont gagné !</h3>
+                        <p class="ajouter-ok">Relancer une partie</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        popUp.innerHTML = pop;
+        relancerPartie();
+    };
+
+    function gagnerPartieInfil() {
+        let pop = `
+            <div class="relancer-content">
+                <div class="ajouter-card">
+                    <img class="mrxx-win" src="${mrxx}">
+                    <img class="mrxx-win" src="${spy}">
+                    <h3>Les Infiltrés ont gagné !</h3>
+                    <p class="ajouter-ok">Relancer une partie</p>
+                </div>
+            </div>
+        `;
+        popUp.innerHTML = pop;
+        relancerPartie();
+    };
+
+    function gagnerPartieM() {
+        console.log("Viens ici");
+        let pop = ``;
+
+        if(nombreMrXX === 1) {
+            pop = `
+                <div class="relancer-content">
+                    <div class="ajouter-card">
+                        <img class="mrxx-win" src="${mrxx}">
+                        <h3>Le Mister.Xx a gagné</h3>
+                        <p class="ajouter-ok">Relancer une partie</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            pop = `
+                <div class="relancer-content">
+                    <div class="ajouter-card">
+                        <img class="mrxx-win" src="${mrxx}">
+                        <h3>Les Mister.Xx ont gagnés !</h3>
+                        <p class="ajouter-ok">Relancer une partie</p>
+                    </div>
+                </div>
+            `;
+            
+        }
+        
+
+        popUp.innerHTML = pop;
+        relancerPartie();
+    };
+
+    function relancerPartie() {
+
+        const relancerBut = document.querySelector(".relancer-content");
+
+        relancerBut.addEventListener('click', () => {
+            console.log("Relancer partie");
+            window.location.reload();
+        });
     };
 
     function donnerOrdrePassage() {

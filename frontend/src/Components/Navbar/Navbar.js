@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
 import rules from '../../img/rules.png';
-import inco from '../../img/spy.png';
+import inco from '../../img/incognito.png';
 import idea from '../../img/idea.png';
 import login from '../../img/log-in.png';
 import { getAuthenticatedUser } from '../../utils/auths';
