@@ -166,6 +166,7 @@ const WordPage = async  () => {
       button.addEventListener('click', async (e) => {
         const { elementId } = e.target.dataset;
         console.log("clicked");
+        console.log(elementId);
         await validerMot(elementId);
         WordPage();
       });
