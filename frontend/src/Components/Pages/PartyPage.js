@@ -55,13 +55,11 @@ const PartyPage =async () => {
 
         console.log('New partie : ', newPartie);
         localStorage.setItem("idMot", newPartie.idMot);
-        console.log(idMot);
        
         
 
     };
     const idMot= localStorage.getItem("idMot");
-    console.log("ici"+idMot);
 
     
     try {
@@ -71,9 +69,22 @@ const PartyPage =async () => {
           const leMot= await response.json();
       
           console.log(leMot);
+          localStorage.setItem("mot", leMot.mot);
+          localStorage.setItem("semblable", leMot.semblable);
+
+
+          
       }catch (err) {
         console.error('HomePage::error: ', err);
-      }
+      };
+
+      const mot= localStorage.getItem("mot");
+      console.log(mot);
+      const semblable= localStorage.getItem("semblable");
+
+      console.log(semblable);
+
+      
 
 
 
