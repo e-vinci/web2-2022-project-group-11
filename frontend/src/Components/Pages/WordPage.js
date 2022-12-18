@@ -43,7 +43,7 @@ const WordPage = async  () => {
 
     const readAllMotsTemporaires = async () => {
     try {
-      const response = await fetch('/api/motsTemporaires');
+      const response = await fetch(`${process.env.API_BASE_URL}/motsTemporaires`);
   
       if (!response.ok) {
         throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
@@ -141,7 +141,7 @@ const WordPage = async  () => {
 
         };
 
-        const response= await fetch('/api/motsTemporaires',options);
+        const response= await fetch(`${process.env.API_BASE_URL}/motsTemporaires`,options);
         if(response.status===401) main.innerHTML+= `<p> vous devez etre connecté pour suggerer un mot.</p> `;
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
         const newMot = await response.json(); // json() returns a promise => we wait for the data
@@ -192,7 +192,7 @@ const WordPage = async  () => {
 
     };
 
-    const response= await fetch(`/api/motsTemporaires/${id}`,options);
+    const response= await fetch(`${process.env.API_BASE_URL}/motsTemporaires/${id}`,options);
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
     const motValidé = await response.json(); // json() returns a promise => we wait for the data
 
@@ -218,7 +218,7 @@ const WordPage = async  () => {
 
     };
 
-    const response= await fetch(`/api/motsTemporaires/refuser/${id}`,options);
+    const response= await fetch(`${process.env.API_BASE_URL}/motsTemporaires/refuser/${id}`,options);
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
     const motValidé = await response.json(); // json() returns a promise => we wait for the data
 

@@ -64,7 +64,7 @@ const PartyPage =async () => {
 
         };
 
-        const response= await fetch('/api/parties',options);
+        const response= await fetch(`${process.env.API_BASE_URL}/parties`,options);
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
@@ -79,7 +79,7 @@ const PartyPage =async () => {
         
         try {
     
-            const response= await fetch(`/api/mots/${idMot}`)
+            const response= await fetch(`${process.env.API_BASE_URL}/mots/${idMot}`)
                 if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
               const leMot = await response.json();
           
