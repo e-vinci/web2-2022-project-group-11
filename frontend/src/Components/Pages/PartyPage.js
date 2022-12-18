@@ -37,7 +37,6 @@ import perso21 from "../../img/avatar/21.png";
 import card from "../../img/carte.png";
 import warning from "../../img/warning.png";
 import { clearPage } from '../../utils/render';
-import { getAuthenticatedUser } from "../../utils/auths";
 
 
 const PartyPage =async () => {
@@ -45,11 +44,9 @@ const PartyPage =async () => {
     const nombreMrXX= localStorage.getItem("nbrX");
     const nombreIncognitos= localStorage.getItem("nbrIncognitos");
     clearPage();
-    const authenticatedUser = getAuthenticatedUser();
 
     createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX);
     async function createPartie(nombreJoueurs,nombreIncognitos, nombreMrXX){
-        console.log(authenticatedUser);
 
         const options = {
             method: 'POST',
@@ -57,9 +54,7 @@ const PartyPage =async () => {
                
                 nombreJoueurs,
                 nombreIncognitos,
-                nombreMrXX,
-                idMember
-
+                nombreMrXX
             }),
             headers: {
                 'Content-Type' : 'application/json',
@@ -74,9 +69,7 @@ const PartyPage =async () => {
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
     
         const idMot= newPartie.idMot;
-
-
-        localStorage.setItem("idMot", idMot);
+         localStorage.setItem("idMot", idMot);
 
 
     
@@ -111,32 +104,7 @@ const PartyPage =async () => {
        
     };
 
-    const idMot= localStorage.getItem("idMot");
-
-    
-    try {
-
-        const response= await fetch(`/api/mots/${idMot}`)
-            if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-          const leMot = await response.json();
-      
-          console.log(leMot);
-          localStorage.setItem("mot", leMot.mot);
-          localStorage.setItem("semblable", leMot.semblable);
-
-
-          
-      }catch (err) {
-        console.error('HomePage::error: ', err);
-      };
-
-      const mot = localStorage.getItem("mot");
-
-      console.log(mot);
-
-      const semblable = localStorage.getItem("semblable");
-
-      console.log(semblable);
+   
 
       
 
@@ -409,6 +377,9 @@ const PartyPage =async () => {
         }
 
         let pop = ``;
+        let mot = localStorage.getItem("mot");
+        let semblable= localStorage.getItem("semblable");
+        console.log("la "+ mot);
 
         if(role === 'Civil') {
             pop = ` 
