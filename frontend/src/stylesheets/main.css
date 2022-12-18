@@ -482,14 +482,13 @@ nav ul img:hover {
     position: relative;
     width: 400px;
     height: 500px;
-    background:#74d7f0;
+    background:#7CFFCB;
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 0 50px rgba(0, 0,0,.1);
     overflow: hidden;
     z-index: 1;
 }
-
 .wrapper h1 {
     color: #444;
 }
