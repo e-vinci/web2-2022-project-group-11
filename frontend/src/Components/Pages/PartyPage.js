@@ -68,7 +68,6 @@ const PartyPage =async () => {
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
             
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
-        console.log("nouvelle partie creee" + newPartie.idMot);
         const idMot= newPartie.idMot;
         localStorage.setItem("idMot", idMot);
         
@@ -88,7 +87,6 @@ const PartyPage =async () => {
             console.error('HomePage::error: ', err);
           };
     
-          const mot = localStorage.getItem("mot");
           
     
           const semblable= localStorage.getItem("semblable");
@@ -96,10 +94,8 @@ const PartyPage =async () => {
           console.log(semblable);
     
           let mot2 = localStorage.getItem("mot");
-        //let semblable2 = localStorage.getItem("semblable");
-        console.log(mot2 + "111");
-    
-        
+          let semblable2= localStorage.getItem("semblable");
+     
        
     
     
