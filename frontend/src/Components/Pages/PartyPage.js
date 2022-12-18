@@ -70,39 +70,47 @@ const PartyPage =async () => {
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
         const newPartie = await response.json(); // json() returns a promise => we wait for the data
-
+    
         console.log('New partie : ', newPartie);
-        localStorage.setItem("idMot", newPartie.idMot);
+        const idMot= newPartie.idMot;
+
+
+        localStorage.setItem("idMot", idMot);
+
+        console.log("id" + localStorage.getItem( "idMot"));
+    
+    
+    
+        
+        try {
+    
+            const response= await fetch(`/api/mots/${idMot}`)
+                if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+              const leMot = await response.json();
+          
+              console.log(leMot);
+              localStorage.setItem("mot", leMot.mot);
+              localStorage.setItem("semblable", leMot.semblable);
+    
+    
+              
+          }catch (err) {
+            console.error('HomePage::error: ', err);
+          };
+    
+          const mot= localStorage.getItem("mot");
+          
+          console.log(mot);
+    
+          const semblable= localStorage.getItem("semblable");
+    
+          console.log(semblable);
+    
+        
        
     };
 
-    const idMot= localStorage.getItem("idMot");
-
-    
-    try {
-
-        const response= await fetch(`/api/mots/${idMot}`)
-            if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-          const leMot = await response.json();
-      
-          console.log(leMot);
-          localStorage.setItem("mot", leMot.mot);
-          localStorage.setItem("semblable", leMot.semblable);
-
-
-          
-      }catch (err) {
-        console.error('HomePage::error: ', err);
-      };
-
-      const mot= localStorage.getItem("mot");
-      
-      console.log(mot);
-
-      const semblable= localStorage.getItem("semblable");
-
-      console.log(semblable);
-
+   
       
 
     

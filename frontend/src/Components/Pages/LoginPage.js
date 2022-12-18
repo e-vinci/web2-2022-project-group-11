@@ -78,6 +78,7 @@ const LoginPage = () => {
         console.log('New logged user : ', authenticatedUser);
         setAuthenticatedUser(authenticatedUser);
         const isAdmin= authenticatedUser.isAdmin;
+        console.log("regarde" + authenticatedUser);
         Navbar();
         Navigate('/');
         
