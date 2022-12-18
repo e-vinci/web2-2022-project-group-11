@@ -6,6 +6,7 @@ const RegisterPage = () => {
     main.innerHTML = `
     <div class="wrapper-box" >
     <div class="wrapper" id= "formRegister">
+    <div class="curved" id="curved"></div>
     <h1>Inscription</h1>
     <form method="post" action="" id="register">
     

@@ -10,8 +10,8 @@ const LoginPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
     <div class="wrapper-box">
-        <div class="curved" id="curved"></div>
         <div class="wrapper">
+        <div class="curved" id="curved"></div>
         <h1>Connexion</h1>
             <div class="input-box"> 
                 <label>Username </label>
