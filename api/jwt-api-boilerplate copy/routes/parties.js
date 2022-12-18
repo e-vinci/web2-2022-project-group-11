@@ -22,7 +22,7 @@ router.post('/',  (req,res)=> {
 
     const nombreIncognitos= req.body.nombreIncognitos;
     const nombreMrXX=  req.body.nombreMrXX;
-    const idMot=    readRandomMot().id;
+    const idMot=  1 // readRandomMot().id;
     const idMembre=  req.body.idMembre;
     
    // if( !nbrJoueurs || !nbrIncognitos || !nbrEspions || !idMot || !idMembre  ) return res.sendStatus(400);

@@ -17,13 +17,6 @@ function readOneFromId(id) {
   };
 
 
-  function getUsersById(id){
-    const users= parse(jsonDbPath,defaultUsers);
-    const foundIndex = users.findIndex((user)=> user.id== id )
-    const foundUser= users[foundIndex];
-    return foundUser;
-  
-  };
 
 function readRandomMot(){
     const mots= parse(jsonDbPath,defaultMots);
