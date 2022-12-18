@@ -75,7 +75,7 @@ const RulesPage = () => {
                     <h1>Obtenez votre mot</h1>
                     <p>Discrètement, chacun à votre tour et sans que les autres joueurs le voient,
                     choississez une carte pour recevoir un mot secret.</br>Pour l'instant, vous ne savez pas 
-                    si vous etes un Civil ou un Incognito (Si vous etes Mr.Xx, vous le serez)</p>
+                    si vous etes un Civil ou un Incognito (Si vous etes Mr.Xx, vous le saurez)</p>
                 </div>
             </div>
 
