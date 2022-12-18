@@ -1,10 +1,16 @@
 import { getAuthenticatedUser } from "../../utils/auths";
-import {isAdmin} from "./LoginPage";
 const WordPage = async  () => {
-    const authenticatedUser= getAuthenticatedUser();
-    
-
     const main = document.querySelector('main');
+    const isAdmin= true; 
+
+    if(getAuthenticatedUser()!= undefined){
+    
+      const authenticatedUser= getAuthenticatedUser();
+      console.log(authenticatedUser.isAdmin);
+      if(authenticatedUser.isAdmin) isAdmin= true;
+
+    }
+
     main.innerHTML = '<div id="motsTemporairesWrapper"></div><div id="tabMotsTemporaires"></div>';
     const motsTemporairesWrapper = document.querySelector('#motsTemporairesWrapper');
     const tabMotsTemporaires = document.querySelector('#tabMotsTemporaires');
@@ -84,8 +90,8 @@ const WordPage = async  () => {
       };
 
 
-    
-    if (!isAdmin){
+
+  if ( isAdmin){
      motsTemporairesWrapper.innerHTML = motsTemporairesDefaultHTML;
      tabMotsTemporaires.innerHTML = motsTemporairesAsHtmlTable;
 
