@@ -12,8 +12,8 @@ POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"a",
-    "password":"a"
+    "username":"1",
+    "password":"1"
 }
 
 ###
@@ -22,8 +22,8 @@ Content-Type: application/json
 Authorization: {{manager.response.body.token}}
 
 {
-    "mot": "fraise",
-    "semblable": "cerise"
+    "mot": "libellule",
+    "semblable": "insecte"
     
 }
 
@@ -38,7 +38,7 @@ Authorization: {{manager.response.body.token}}
 }
 
 ###
-PATCH {{baseUrl}}/motsTemporaires/refuser/5
+PATCH {{baseUrl}}/motsTemporaires/refuser/
 Content-Type: application/json
 
 {
